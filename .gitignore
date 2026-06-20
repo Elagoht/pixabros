@@ -2,6 +2,7 @@
 dist/
 pixabros
 pixabros-linux
+pixabros-linux.tar.gz
 
 # Dependencies
 go.sum

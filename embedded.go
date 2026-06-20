@@ -11,18 +11,23 @@ import (
 	"strings"
 )
 
-//go:embed dist/*
+// Embed everything under dist/ except embeds/ and browser-games/ (they're large game files served from disk).
+//
+//go:embed dist/css/*
+//go:embed dist/js/*
+//go:embed dist/assets/*
+//go:embed dist/gallery/*
+//go:embed dist/awards/*
+//go:embed dist/pages/*
+//go:embed dist/manifest.json
 var distFS embed.FS
 
-// loadPagesFromDist loads HTML pages, preferring embedded dist/ over disk.
+// loadPages loads HTML pages, preferring embedded dist/ over disk.
 func (s *htmlStore) loadPages() error {
-	// Try embedded first
 	if err := s.loadFromFS(distFS, "dist/pages"); err == nil && s.count() > 0 {
 		log.Println("Pages loaded from embedded dist/")
 		return nil
 	}
-
-	// Fallback: disk
 	if err := s.load("dist/pages"); err != nil {
 		return err
 	}
@@ -53,7 +58,6 @@ func (s *htmlStore) loadFromFS(fsys fs.FS, dir string) error {
 			return err
 		}
 
-		// Derive URL path
 		rel, _ := filepath.Rel(dir, path)
 		urlPath := "/" + strings.TrimSuffix(rel, ".html")
 		if urlPath == "/index" {

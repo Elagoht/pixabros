@@ -322,7 +322,21 @@ func setupRouter(rl *rateLimiter) http.Handler {
 		}
 		w.Header().Set("Cache-Control", "public, max-age=31536000, immutable")
 
-		// Try embedded FS first
+		// Large embeds/browser-games files: disk only
+		if strings.HasPrefix(rel, "embeds/") || strings.HasPrefix(rel, "browser-games/") {
+			p := filepath.Join("dist", rel)
+			data, err := os.ReadFile(p)
+			if err != nil {
+				http.NotFound(w, r)
+				return
+			}
+			ct := contentType(rel)
+			w.Header().Set("Content-Type", ct)
+			w.Write(data)
+			return
+		}
+
+		// Everything else: embedded FS first, disk fallback
 		if data, err := fs.ReadFile(distFS, "dist/"+rel); err == nil {
 			ct := contentType(rel)
 			w.Header().Set("Content-Type", ct)
@@ -330,7 +344,6 @@ func setupRouter(rl *rateLimiter) http.Handler {
 			return
 		}
 
-		// Fallback: disk
 		p := filepath.Join("dist", rel)
 		data, err := os.ReadFile(p)
 		if err != nil {

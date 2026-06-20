@@ -20,8 +20,13 @@ die()  { echo -e "${RED}✗${NC}  $*" >&2; exit 1; }
 # ── Pre-flight ──
 [ "$(id -u)" -eq 0 ] || die "Run as root: sudo ./install.sh"
 
-if [ ! -f "$BIN_NAME" ]; then
-  [ -f "pixabros-linux" ] && BIN_NAME="pixabros-linux" || die "Binary not found. Place pixabros or pixabros-linux in this directory."
+# Detect binary
+if [ -f "pixabros-linux" ]; then
+  BIN_NAME="pixabros-linux"
+elif [ -f "pixabros" ]; then
+  BIN_NAME="pixabros"
+else
+  die "Binary not found. Place pixabros or pixabros-linux in this directory."
 fi
 
 # ── Create system user ──
@@ -37,6 +42,17 @@ say "Installing to $INSTALL_DIR"
 mkdir -p "$INSTALL_DIR"
 cp "$BIN_NAME" "$INSTALL_DIR/$BIN_NAME"
 chmod 755 "$INSTALL_DIR/$BIN_NAME"
+
+# Copy game embeds (not embedded in binary — read from disk)
+if [ -d "dist/embeds" ]; then
+  say "Copying game embeds..."
+  rm -rf "$INSTALL_DIR/dist/embeds"
+  cp -r dist/embeds "$INSTALL_DIR/dist/embeds"
+fi
+if [ -d "dist/browser-games" ]; then
+  cp -r dist/browser-games "$INSTALL_DIR/dist/browser-games"
+fi
+
 chown -R "$USER:$USER" "$INSTALL_DIR"
 
 # ── Write systemd service ──

@@ -5,7 +5,7 @@ BIN_NAME="pixabros"
 SERVICE_NAME="pixabros"
 INSTALL_DIR="/opt/pixabros"
 USER="${PIXABROS_USER:-pixabros}"
-PORT="${PIXABROS_PORT:-8080}"
+PORT="${PORT:-${PIXABROS_PORT:-8080}}"
 
 # ── Colors ──
 RED='\033[0;31m'

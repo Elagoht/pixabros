@@ -6,8 +6,10 @@ html(lang="en")
     include templates/_partials/_nav.jade
     main
       section.wip-page
-        h1.pixel-heading What We&rsquo;re Working On
-        p.section-subtitle A sneak peek at what&rsquo;s cooking in the PixaBros kitchen
+        header.section-header
+          p.section-eyebrow In Development
+          h1 What We're Working On
+          p.section-subtitle A sneak peek at what's cooking in the PixaBros kitchen
         if .WorkingOn
           div.wip-grid
             each project in .WorkingOn
@@ -19,16 +21,16 @@ html(lang="en")
                 div.wip-info
                   h2.wip-title #{.Title}
                   div.wip-tags
-                    each tag in .Tags
+                    each t in .Tags
                       span.wip-tag #{.}
                   p.wip-desc #{.Description}
-                  div.wip-progress
-                    div.wip-progress-bar(style=.ProgressStyle)
-                    span.wip-progress-text #{.Progress}%
+                  div.neon-progress
+                    div.neon-progress-bar(style=.ProgressStyle)
+                    span.neon-progress-text #{.Progress}%
                   span.wip-status #{.Status}
         else
           div.empty-state
-            p Nothing to show right now. We&rsquo;re busy cooking!
+            p Nothing to show right now. We're busy cooking!
             p.empty-icon 🍳
     include templates/_partials/_footer.jade
     include templates/_partials/_overlays.jade

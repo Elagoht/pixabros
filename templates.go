@@ -37,13 +37,10 @@ type PageData struct {
 	Bros          []BrotherVM
 	Games         []GameVM
 	PlayableGames []GameVM
-	Game          *GameVM
 	DevlogPosts   []DevlogPostVM
-	Post         *DevlogPostVM
-	WorkingOn    []WorkingOnVM
-	PressKit     *PressKitVM
-	ErrorMessage string
-	Success      bool
+	Post          *DevlogPostVM
+	WorkingOn     []WorkingOnVM
+	PressKit      *PressKitVM
 
 	// Asset paths
 	DistCSS  string
@@ -69,13 +66,9 @@ type GameVM struct {
 	ImageURL    string
 	Year        int
 	Links       GameLinks
-	Playable       bool
-	ItchEmbed      string
-	CartClass      string        // "playable" or "locked"
-	BadgeHTML      template.HTML
-	HasEmbed       bool
-	HasItchioLink  bool
-	CartridgeClass string // "cart-loaded" or "cart-empty"
+	Playable    bool
+	ItchEmbed   string
+	ItchURL     string // game-specific itch.io URL or studio fallback
 }
 
 type DevlogPostVM struct {
@@ -389,32 +382,24 @@ func toBrotherVM(bros []Brother, _ assetResolver) []BrotherVM {
 	return result
 }
 
-func toGameVM(games []Game, am assetResolver) []GameVM {
+func toGameVM(games []Game, am assetResolver, itchFallback string) []GameVM {
 	result := make([]GameVM, len(games))
 	for i, g := range games {
-		cartridgeClass := "cart-empty"
-		cartClass := "locked"
-		badge := template.HTML("🔒")
-		if g.Playable {
-			cartClass = "playable"
-			badge = "▶ PLAY"
-			cartridgeClass = "cart-loaded"
+		itchURL := g.Links.Itchio
+		if itchURL == "" {
+			itchURL = itchFallback
 		}
 		result[i] = GameVM{
-			Slug:           g.Slug,
-			Title:          g.Title,
-			Genre:          g.Genre,
-			Description:    g.Description,
-			ImageURL:       am.path("public/gallery/" + g.Screenshot),
-			Year:           g.Year,
-			Links:          g.Links,
-			Playable:       g.Playable,
-			ItchEmbed:      g.ItchEmbed,
-			CartClass:      cartClass,
-			BadgeHTML:      badge,
-			HasEmbed:       g.ItchEmbed != "",
-			HasItchioLink:  g.Links.Itchio != "",
-			CartridgeClass: cartridgeClass,
+			Slug:        g.Slug,
+			Title:       g.Title,
+			Genre:       g.Genre,
+			Description: g.Description,
+			ImageURL:    am.path("public/gallery/" + g.Screenshot),
+			Year:        g.Year,
+			Links:       g.Links,
+			Playable:    g.Playable,
+			ItchEmbed:   g.ItchEmbed,
+			ItchURL:     itchURL,
 		}
 	}
 	return result

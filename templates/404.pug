@@ -8,15 +8,15 @@ html(lang="en")
       section.error-page
         div.error-content
           h1.error-code 404
-          h2.pixel-heading Level Not Found
-          p.error-text This area hasn&rsquo;t been unlocked yet. Maybe you need a power-up?
+          h2.error-subtitle GAME OVER
+          p.error-text This level hasn't been unlocked yet. Maybe you need a power-up?
           div.error-pixels
             span.pixel-block
             span.pixel-block
             span.pixel-block
             span.pixel-block
             span.pixel-block
-          a.pixel-btn(href="/") 🏠 Return to Start
+          a.arcade-btn.arcade-btn-cyan(href="/") ▶ Continue
     include templates/_partials/_footer.jade
     include templates/_partials/_overlays.jade
     script(src=.DistJS)

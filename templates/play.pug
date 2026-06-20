@@ -6,65 +6,88 @@ html(lang="en")
     include templates/_partials/_nav.jade
     main
       section.play-page
-        // TV Screen
-        div.nes-tv
-          div.nes-tv-outer
-            div.nes-tv-screen
-              div.nes-tv-static#tv-static(aria-hidden="true")
-              iframe#tv-iframe.nes-tv-iframe(src="", allowfullscreen="true", frameborder="0", loading="lazy")
-              div.nes-tv-placeholder#tv-placeholder
-                div.nes-tv-start
-                  span.nes-tv-start-icon ▶
-                  span.nes-tv-start-text INSERT CARTRIDGE
-            div.nes-tv-brand PIXABROS
-            div.nes-tv-controls
-              button.nes-tv-fullscreen#tv-fullscreen(title="Fullscreen") ⛶
-          div.nes-tv-legs
-            div.nes-tv-leg
-            div.nes-tv-leg
+        div.play-wrapper
+          // Main: TV + Console + Cartridges
+          div.play-main
+            div.arcade-tv
+              div.arcade-tv-outer
+                div.arcade-tv-screen
+                  div.arcade-tv-static#tv-static(aria-hidden="true")
+                  iframe#tv-iframe.arcade-tv-iframe(src="", allowfullscreen="true", frameborder="0", loading="lazy")
+                  div.arcade-tv-placeholder#tv-placeholder
+                    div.arcade-tv-start
+                      span.arcade-tv-start-icon ▶
+                      span.arcade-tv-start-text INSERT CARTRIDGE
+                div.arcade-tv-brand-row
+                  span.arcade-tv-brand PIXABROS
+                  div.arcade-tv-led#tv-on-led
+                  button.arcade-tv-fullscreen-btn#tv-fullscreen(title="Fullscreen") ⛶
+              div.arcade-tv-legs
+                div.arcade-tv-leg
+                div.arcade-tv-leg
 
-        // NES Console
-        div.nes-console
-          div.nes-console-body
-            div.nes-console-top-shell
-              div.nes-console-lid
-            div.nes-console-front
-              div.nes-console-slot
-                span.nes-slot-label INSERT CARTRIDGE
-              div.nes-console-led-row
-                div.nes-power-led#nes-led
-                span.nes-power-label POWER
-                div.nes-reset-btn
-                  span.nes-reset-label RESET
+            div.arcade-console
+              div.arcade-console-body
+                div.arcade-console-top-shell
+                  div.arcade-console-lid
+                div.arcade-console-front
+                  div.arcade-console-slot
+                    span.arcade-slot-label#slot-label INSERT CARTRIDGE
+                  div.arcade-console-led-row
+                    div.arcade-power-led#nes-led
+                    span.arcade-power-label POWER
+                    div.arcade-reset-btn
+                      span.arcade-reset-label RESET
 
-        // Cartridge shelf — only playable games
-        h2.pixel-heading.shelf-title Game Library
-        div.nes-cartridges#cartridge-shelf
-          each g in .PlayableGames
-            div.nes-cartridge(data-slug=.Slug, data-embed=.ItchEmbed, data-itch=.Links.Itchio)
-              // cartridge top ridge
-              div.cart-ridge
-              // cartridge grip area
-              div.cart-grip
-                div.cart-grip-lines
-                  span
-                  span
-                  span
-              // cartridge label
-              div.cart-label
-                span.cart-title #{.Title}
-              // cartridge body
-              div.cart-shell
-                div.cart-shell-top
-                img.cart-thumb(src=.ImageURL, alt=.Title, loading="lazy", width="120", height="68")
-                div.cart-shell-bottom
-              // cartridge contacts
-              div.cart-contacts
-                span
-                span
-                span
-                span
-                span
+            h2.pixel-heading.shelf-title Play in Browser
+            div.arcade-cartridges#cartridge-shelf
+              each g in .PlayableGames
+                div.nes-cartridge(data-slug=.Slug, data-embed=.ItchEmbed, data-itch=.Links.Itchio, data-title=.Title, data-genre=.Genre, data-desc=.Description, data-image=.ImageURL, data-year=.Year)
+                  div.cart-ridge
+                  div.cart-grip
+                    div.cart-grip-lines
+                      span
+                      span
+                      span
+                  div.cart-label
+                    span.cart-title #{.Title}
+                  div.cart-shell
+                    div.cart-shell-top
+                    img.cart-thumb(src=.ImageURL, alt=.Title, loading="lazy", width="120", height="68")
+                    div.cart-shell-bottom
+                  div.cart-contacts
+                    span
+                    span
+                    span
+                    span
+                    span
+
+          // Sidebar: sticky, outside main play area
+          aside.game-info-panel#game-info-panel
+            div.game-info-placeholder
+              span.game-info-placeholder-icon 🎮
+              p Insert a cartridge to see game details
+            div.game-info-content
+              img.game-info-thumb(src="", alt="")
+              h3.game-info-title
+              span.game-info-genre
+              span.game-info-year
+              p.game-info-desc
+              div.game-info-links
+
+        // All Games Grid
+        section.play-all-games
+          h2.pixel-heading.shelf-title More Games
+          p.play-all-subtitle Download and play on itch.io
+          div.games-grid
+            each game in .Games
+              a.game-card(href=.ItchURL, target="_blank", rel="noopener", title=.Title)
+                div.game-card-frame
+                  img.game-thumb(src=.ImageURL, alt=.Title, loading="lazy", width="400", height="225")
+                  div.game-card-overlay
+                    span.game-card-title #{.Title}
+                    span.game-card-genre #{.Genre}
+                    span.game-card-year #{.Year}
 
     include templates/_partials/_footer.jade
     include templates/_partials/_overlays.jade

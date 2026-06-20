@@ -6,58 +6,53 @@ html(lang="en")
     include templates/_partials/_nav.jade
     main
       section.hero
-        div.hero-parallax
-          div.hero-layer.hero-layer-back
-          div.hero-layer.hero-layer-mid
-          div.hero-layer.hero-layer-front
         div.hero-content
-          img.hero-logo(src=.LogoPath, alt="PixaBros logo", width="300", height="255")
+          img.hero-logo(src=.LogoPath, alt="PixaBros logo", width="280", height="238")
           h1.hero-tagline#typewriter(data-text=.Tagline)
           p.hero-sub #{.Description}
-          a.pixel-btn.hero-cta(href="/devlog") View Our Games
-      div#particles.hero-particles(aria-hidden="true")
-      section.about#about
-        h2.pixel-heading Meet the Bros
-        div.bros-grid
-          each bro in .Bros
-            div.bro-card
-              div.bro-avatar-frame
-                if .Avatar
-                  img.bro-avatar(src=.Avatar, alt=.Name, width="128", height="128")
-                else
-                  div.bro-avatar-placeholder #{.Initials}
-              h3.bro-name #{.Name}
-              div.bro-roles
-                each role in .Roles
-                  span.role-badge #{.}
-              p.bro-bio #{.Bio}
-      section.games#games
-        h2.pixel-heading Our Games
-        p.section-subtitle #{len .Games} games, two brothers, infinite passion
-        div.games-grid
-          each game, idx in .Games
-            div.game-card(data-slug=.Slug)
-              div.game-card-inner
-                img.game-thumb(src=.ImageURL, alt=.Title, loading="lazy", width="400", height="225")
-                div.game-card-overlay
-                  h3.game-title #{.Title}
-                  span.game-genre #{.Genre}
-                  span.game-year #{.Year}
-      div#game-modal.modal(aria-hidden="true")
-        div.modal-backdrop
-        div.modal-content
-          button.modal-close(aria-label="Close modal") &times;
-          img#modal-screenshot.modal-screenshot(src="", alt="")
-          div.modal-info
-            h2#modal-title
-            span#modal-genre.genre-badge.modal-genre
-            p#modal-description
-            div#modal-links.modal-links
-      section.cta-section
-        h2.pixel-heading #{.Studio}
+          a.arcade-btn.arcade-btn-cyan(href="/play") ▶ Insert Coin
+
+      section.section-frame#about
+        div.section-inner
+          header.section-header
+            p.section-eyebrow The Studio
+            h2 Meet the Bros
+          div.bros-grid
+            each bro in .Bros
+              div.bro-card
+                div.bro-avatar-frame
+                  if .Avatar
+                    img.bro-avatar(src=.Avatar, alt=.Name, width="112", height="112")
+                  else
+                    div.bro-avatar-placeholder #{.Initials}
+                h3.bro-name #{.Name}
+                div.bro-roles
+                  each r in .Roles
+                    span.tag-badge #{.}
+                p.bro-bio #{.Bio}
+
+      section.section-frame#games
+        div.section-inner
+          header.section-header
+            p.section-eyebrow Portfolio
+            h2 Our Games
+            p.section-subtitle #{len .Games} games, two brothers, infinite passion
+          div.games-grid
+            each game in .Games
+              a.game-card(href="/play", title=.Title)
+                div.game-card-frame
+                  img.game-thumb(src=.ImageURL, alt=.Title, loading="lazy", width="400", height="225")
+                  div.game-card-overlay
+                    span.game-card-title #{.Title}
+                    span.game-card-genre #{.Genre}
+                    span.game-card-year #{.Year}
+
+      section.cta-banner
+        h2 #{.Studio}
         p.cta-text #{.Tagline}
         if .Socials.Email
-          a.pixel-btn(href=.SocialMailto) Get in Touch
+          a.arcade-btn(href=.SocialMailto) Get in Touch
+
     include templates/_partials/_footer.jade
     include templates/_partials/_overlays.jade
     script(src=.DistJS)

@@ -6,8 +6,10 @@ html(lang="en")
     include templates/_partials/_nav.jade
     main
       section.devlog-page
-        h1.pixel-heading Devlog
-        p.section-subtitle Behind the scenes of PixaBros game development
+        header.section-header
+          p.section-eyebrow Development
+          h1 Devlog
+          p.section-subtitle Behind the scenes of PixaBros game development
         if .DevlogPosts
           div.devlog-list
             each post in .DevlogPosts
@@ -16,7 +18,7 @@ html(lang="en")
                   h2.devlog-card-title #{.Title}
                 time.devlog-card-date(datetime=.RawDate) #{.FormattedDate}
                 p.devlog-card-excerpt #{.Excerpt}
-                a.devlog-card-link.pixel-btn-small(href=.URL) Read More
+                a.arcade-btn-small(href=.URL) Read More
         else
           div.empty-state
             p No devlog posts yet. Check back soon!

@@ -6,8 +6,10 @@ html(lang="en")
     include templates/_partials/_nav.jade
     main
       section.contact-page
-        h1.pixel-heading Contact Us
-        p.section-subtitle Got a question? Want to collaborate? Just wanna say hi?
+        header.section-header
+          p.section-eyebrow Get In Touch
+          h1 Contact Us
+          p.section-subtitle Got a question? Want to collaborate? Just wanna say hi?
         form#contact-form.contact-form
           div.contact-error#contact-error(style="display:none")
           div.form-group
@@ -22,9 +24,9 @@ html(lang="en")
           div.form-group
             label(for="message") Message *
             textarea#message(name="message", required, rows="6", placeholder="Tell us what's on your mind...")
-          button#contact-submit.pixel-btn(type="submit") Send Message
+          button#contact-submit.arcade-btn(type="submit") Send Message
         div.contact-success#contact-success(style="display:none")
-          h2 ✅ Message Sent!
+          h2 Message Sent!
           p Thanks for reaching out. We'll get back to you as soon as we can.
     include templates/_partials/_footer.jade
     include templates/_partials/_overlays.jade

@@ -105,14 +105,14 @@ func renderAllPages() error {
 	// ---- Index ----
 	pd := makePD("PixaBros — Brothers make games", c.Site.Description, "/")
 	pd.Bros = toBrotherVM(c.Bros, am)
-	pd.Games = toGameVM(c.Games, am)
+	pd.Games = toGameVM(c.Games, am, c.Site.Socials.Itchio)
 	if err := write("index", pd); err != nil {
 		return fmt.Errorf("index: %w", err)
 	}
 
 	// ---- Play ----
 	pdPlay := makePD("Play — PixaBros", "Play PixaBros games right in your browser", "/play")
-	allGames := toGameVM(c.Games, am)
+	allGames := toGameVM(c.Games, am, c.Site.Socials.Itchio)
 	pdPlay.Games = allGames
 	pdPlay.PlayableGames = filterPlayable(allGames)
 	if err := write("play", pdPlay); err != nil {
@@ -162,7 +162,7 @@ func renderAllPages() error {
 	// ---- Press Kit ----
 	pdPress := makePD("Press Kit — PixaBros", "Press resources for PixaBros", "/press-kit")
 	pdPress.PressKit = toPressKitVM(&c.PressKit, am)
-	pdPress.Games = toGameVM(c.Games, am)
+	pdPress.Games = toGameVM(c.Games, am, c.Site.Socials.Itchio)
 	if err := write("press-kit", pdPress); err != nil {
 		return fmt.Errorf("press-kit: %w", err)
 	}

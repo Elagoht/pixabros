@@ -6,7 +6,9 @@ html(lang="en")
     include templates/_partials/_nav.jade
     main
       section.presskit-page
-        h1.pixel-heading Press Kit
+        header.section-header
+          p.section-eyebrow Resources
+          h1 Press Kit
         if .PressKit
           section.presskit-section
             h2 Factsheet
@@ -50,12 +52,12 @@ html(lang="en")
             h2 Featured Games
             div.games-grid
               each game in .Games
-                div.game-card
-                  div.game-card-inner
+                a.game-card(href="/play", title=.Title)
+                  div.game-card-frame
                     img.game-thumb(src=.ImageURL, alt=.Title, loading="lazy", width="400", height="225")
                     div.game-card-overlay
-                      h3.game-title #{.Title}
-                      span.game-genre #{.Genre}
+                      span.game-card-title #{.Title}
+                      span.game-card-genre #{.Genre}
     include templates/_partials/_footer.jade
     include templates/_partials/_overlays.jade
     script(src=.DistJS)

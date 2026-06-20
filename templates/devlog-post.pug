@@ -6,10 +6,10 @@ html(lang="en")
     include templates/_partials/_nav.jade
     main
       article.devlog-article
-        a.devlog-back(href="/devlog") &larr; Back to Devlog
+        a.devlog-back(href="/devlog") ← RETURN
         if .Post
           header.devlog-header
-            h1.pixel-heading #{.Post.Title}
+            h1 #{.Post.Title}
             time.devlog-date(datetime=.Post.RawDate) #{.Post.FormattedDate}
           div.devlog-content #{.Post.Content}
     include templates/_partials/_footer.jade

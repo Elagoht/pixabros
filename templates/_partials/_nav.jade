@@ -1,9 +1,9 @@
-nav#navbar.pixel-nav
+nav#navbar.arcade-nav
   div.nav-inner
-    a.logo-link(href="/")
-      img.nav-logo(src=.LogoPath, alt=.Studio, width="48", height="41")
+    a.nav-logo-link(href="/")
+      img.nav-logo(src=.LogoPath, alt=.Studio, width="40", height="34")
       span.nav-brand #{.Studio}
-    button#nav-toggle.mobile-toggle(aria-label="Toggle menu")
+    button#nav-toggle.nav-toggle-btn(aria-label="Toggle menu")
       span
       span
       span
@@ -14,3 +14,4 @@ nav#navbar.pixel-nav
       li: a(href="/working-on") WIP
       li: a(href="/press-kit") Press Kit
       li: a(href="/contact") Contact
+    button#crt-toggle.nav-crt-btn(title="Toggle CRT scanlines") CRT

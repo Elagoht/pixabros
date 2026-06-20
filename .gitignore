@@ -1,6 +1,7 @@
 # Build output
 dist/
 pixabros
+pixabros-linux
 
 # Dependencies
 go.sum

@@ -1,0 +1,60 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="utf-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title #{.Title}
+    meta(name="theme-color", content="#1a1a2e")
+    link(rel="stylesheet", href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=IBM+Plex+Mono&display=swap")
+    link(rel="stylesheet", href=.DistCSS)
+  body
+    nav#navbar.pixel-nav
+      div.nav-inner
+        a.logo-link(href="/")
+          img.nav-logo(src=.LogoPath, alt=.Studio, width="48", height="41")
+          span.nav-brand #{.Studio}
+        button#nav-toggle.mobile-toggle(aria-label="Toggle menu")
+          span
+          span
+          span
+        ul.nav-links
+          li: a(href="/") Home
+          li: a(href="/devlog") Devlog
+          li: a(href="/working-on") WIP
+          li: a(href="/press-kit") Press Kit
+          li: a(href="/contact") Contact
+
+    main
+      section.error-page
+        div.error-content
+          h1.error-code 404
+          h2.pixel-heading Level Not Found
+          p.error-text This area hasn&rsquo;t been unlocked yet. Maybe you need a power-up?
+          div.error-pixels
+            span.pixel-block
+            span.pixel-block
+            span.pixel-block
+            span.pixel-block
+            span.pixel-block
+          a.pixel-btn(href="/") 🏠 Return to Start
+
+    footer.pixel-footer
+      div.footer-inner
+        div.footer-brand
+          img.footer-logo(src=.LogoPath, alt=.Studio, width="64", height="54")
+          p #{.Tagline}
+        div.footer-bottom
+          p &copy; #{.Studio} &mdash; Brothers make games
+
+    div#konami-overlay.konami-overlay(aria-hidden="true")
+      div.konami-content
+        h2.konami-title 🏆 Secret Found!
+        p You discovered the Konami Code easter egg!
+        p.konami-sub The bros salute you. 🖥️
+        button#konami-close.pixel-btn Close
+
+    div#toast-container.toast-container(aria-live="polite")
+    div#crt-overlay.crt-overlay(aria-hidden="true")
+    div#cursor-trail(aria-hidden="true")
+
+    script(src=.DistJS)

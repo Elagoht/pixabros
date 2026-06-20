@@ -1,0 +1,9 @@
+# Build output
+dist/
+pixabros
+
+# Dependencies
+go.sum
+
+# Generated content
+messages/messages.jsonl

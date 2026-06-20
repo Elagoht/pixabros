@@ -1,0 +1,14 @@
+[
+  {
+    "name": "Furkan Baytekin",
+    "roles": ["Code", "2D Art", "Music", "Game Design", "SFX", "Polishing", "Video Editing"],
+    "bio": "Furkan is the elder brother who breathes life into pixels with code and sound. He handles the technical side of game development while also creating stunning 2D art and original music. From the first line of code to the final polish, he ensures every game feels just right.",
+    "avatar": ""
+  },
+  {
+    "name": "Enes Baytekin",
+    "roles": ["Code", "2D Art", "Music", "Game Design", "Animations"],
+    "bio": "Enes is the younger brother who brings movement and energy to every project. With a keen eye for animation and a deep understanding of game feel, he makes characters come alive and worlds feel dynamic. His versatility across code, art, and music makes him an essential part of every PixaBros game.",
+    "avatar": ""
+  }
+]

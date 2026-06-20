@@ -1,0 +1,18 @@
+{
+  "studio": "PixaBros",
+  "tagline": "Brothers make games",
+  "description": "We are two brothers who make games together. From code to art, music to game design — we do it all.",
+  "founded": 2020,
+  "location": "Turkey",
+  "socials": {
+    "twitter": "https://twitter.com/pixabros",
+    "itchio": "https://pixabros.itch.io",
+    "discord": "",
+    "github": "https://github.com/pixabros",
+    "email": "hello@pixabros.com"
+  },
+  "cta": {
+    "text": "Check out our latest game!",
+    "url": "/devlog"
+  }
+}

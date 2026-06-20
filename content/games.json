@@ -1,0 +1,128 @@
+[
+  {
+    "slug": "blup-blob",
+    "title": "Blup Blob",
+    "genre": "Puzzle Platformer",
+    "description": "A bouncy puzzle platformer adventure. Help Blup Blob navigate through challenging levels filled with colorful obstacles and clever puzzles.",
+    "screenshot": "blup-blob.png",
+    "links": { "itchio": "", "steam": "" },
+    "year": 2024
+  },
+  {
+    "slug": "digit-crush",
+    "title": "Digit Crush",
+    "genre": "Puzzle",
+    "description": "A number-crunching puzzle game that tests your math skills and strategic thinking. Match digits, clear the board, and aim for the high score.",
+    "screenshot": "digit-crush.png",
+    "links": { "itchio": "", "steam": "" },
+    "year": 2023
+  },
+  {
+    "slug": "dud-os",
+    "title": "Dud OS",
+    "genre": "Simulation",
+    "description": "A quirky operating system simulator. Explore a fictional OS filled with mini-games, easter eggs, and unexpected surprises at every click.",
+    "screenshot": "dud-os.png",
+    "links": { "itchio": "", "steam": "" },
+    "year": 2023
+  },
+  {
+    "slug": "fok-n-roll",
+    "title": "Fok N' Roll",
+    "genre": "Rhythm Action",
+    "description": "A high-energy rhythm game that blends rock music with fast-paced gameplay. Hit the right notes at the right time and rock the stage.",
+    "screenshot": "fok-n-roll.png",
+    "links": { "itchio": "", "steam": "" },
+    "year": 2024
+  },
+  {
+    "slug": "hack-n-dough",
+    "title": "Hack N' Dough",
+    "genre": "Action Strategy",
+    "description": "Hack systems and earn dough in this cyberpunk-themed action strategy game. Plan your hacks carefully and stay ahead of the security systems.",
+    "screenshot": "hack-n-dough.png",
+    "links": { "itchio": "", "steam": "" },
+    "year": 2024
+  },
+  {
+    "slug": "har",
+    "title": "HAR",
+    "genre": "Adventure",
+    "description": "An atmospheric adventure that takes you on a journey through mysterious landscapes. Uncover secrets, solve puzzles, and discover the story of HAR.",
+    "screenshot": "har.png",
+    "links": { "itchio": "", "steam": "" },
+    "year": 2023
+  },
+  {
+    "slug": "injected",
+    "title": "Injected",
+    "genre": "Action",
+    "description": "A fast-paced action game where you fight against a system that's been compromised. Inject your way through security layers and take down the corruption.",
+    "screenshot": "injected.png",
+    "links": { "itchio": "", "steam": "" },
+    "year": 2023
+  },
+  {
+    "slug": "is-there-a-game",
+    "title": "Is There A Game?",
+    "genre": "Experimental",
+    "description": "A meta-experimental game that questions what a game really is. Is there a game here? Only one way to find out.",
+    "screenshot": "is-there-a-game.png",
+    "links": { "itchio": "", "steam": "" },
+    "year": 2024
+  },
+  {
+    "slug": "magical-vein",
+    "title": "Magical Vein",
+    "genre": "Fantasy RPG",
+    "description": "Delve into a magical world where mystical veins of power run through the land. Craft spells, battle creatures, and uncover ancient secrets.",
+    "screenshot": "magical-vein.png",
+    "links": { "itchio": "", "steam": "" },
+    "year": 2025
+  },
+  {
+    "slug": "masquerade-survivors",
+    "title": "Masquerade Survivors",
+    "genre": "Survivor-like",
+    "description": "Survive the masquerade! Battle through waves of masked enemies in this vampire-survivors-inspired action game with unique characters and abilities.",
+    "screenshot": "masquerade-survivors.jpeg",
+    "links": { "itchio": "", "steam": "" },
+    "year": 2025
+  },
+  {
+    "slug": "rockunroll",
+    "title": "Rock Unroll",
+    "genre": "Physics Puzzle",
+    "description": "Rock and roll! A physics-based puzzle game where you guide a boulder through intricate levels, using momentum and gravity to reach the goal.",
+    "screenshot": "rockunroll.webp",
+    "links": { "itchio": "", "steam": "" },
+    "year": 2024
+  },
+  {
+    "slug": "sudo-mice",
+    "title": "Sudo Mice",
+    "genre": "Puzzle",
+    "description": "sudo make me a puzzle! A clever terminal-themed puzzle game where mice execute commands to navigate through increasingly complex mazes.",
+    "screenshot": "sudo-mice.png",
+    "links": { "itchio": "", "steam": "" },
+    "year": 2023
+  },
+  {
+    "slug": "tetrabros",
+    "title": "Tetrabros",
+    "genre": "Puzzle",
+    "description": "The classic block-stacking puzzle reimagined by the bros. A fresh take on tetromino gameplay with unique twists and multiplayer action.",
+    "screenshot": "tetrabros.png",
+    "links": { "itchio": "", "steam": "" },
+    "year": 2024
+  },
+  {
+    "slug": "the-forking-path",
+    "title": "The Forking Path",
+    "genre": "Narrative Adventure",
+    "description": "Every choice forks the path. A narrative-driven adventure where your decisions shape the story in unexpected ways. How many endings will you find?",
+    "screenshot": "the-forking-path.png",
+    "links": { "itchio": "", "steam": "" },
+    "year": 2025
+  }
+]

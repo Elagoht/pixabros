@@ -347,55 +347,12 @@
   }
 
   function activateKonami() {
-    var overlay = document.getElementById('konami-overlay');
-    if (!overlay) return;
-
-    spawnPixelBurst();
-
-    overlay.classList.add('open');
-    overlay.setAttribute('aria-hidden', 'false');
-
-    var closeBtn = document.getElementById('konami-close');
-    if (closeBtn) {
-      closeBtn.addEventListener('click', function () {
-        overlay.classList.remove('open');
-        overlay.setAttribute('aria-hidden', 'true');
-      });
-    }
-
-    overlay.addEventListener('click', function (e) {
-      if (e.target === overlay) {
-        overlay.classList.remove('open');
-        overlay.setAttribute('aria-hidden', 'true');
-      }
-    });
-  }
-
-  function spawnPixelBurst() {
-    var count = 60;
-    var colors = ['#ff1a6c', '#00f0ff', '#ffb700', '#f5f0e8'];
-    for (var i = 0; i < count; i++) {
-      var pixel = document.createElement('div');
-      pixel.style.cssText =
-        'position:fixed;z-index:6000;pointer-events:none;' +
-        'width:' + (3 + Math.random() * 10) + 'px;' +
-        'height:' + (3 + Math.random() * 10) + 'px;' +
-        'background:' + colors[Math.floor(Math.random() * colors.length)] + ';' +
-        'left:50%;top:50%;' +
-        'image-rendering:pixelated;' +
-        'transition:all ' + (0.4 + Math.random() * 0.8) + 's cubic-bezier(0,1,0.3,1);';
-      document.body.appendChild(pixel);
-
-      requestAnimationFrame(function () {
-        pixel.style.transform =
-          'translate(' + ((Math.random() - 0.5) * 500) + 'px,' +
-          ((Math.random() - 0.5) * 500) + 'px) rotate(' + (Math.random() * 360) + 'deg)';
-        pixel.style.opacity = '0';
-      });
-
+    var flashOverlay = document.getElementById('konami-flash-overlay');
+    if (flashOverlay) {
+      flashOverlay.classList.add('active');
       setTimeout(function () {
-        if (pixel.parentNode) pixel.parentNode.removeChild(pixel);
-      }, 2000);
+        flashOverlay.classList.remove('active');
+      }, 2600);
     }
   }
 
@@ -403,15 +360,18 @@
   function initCRTToggle() {
     var toggle = document.getElementById('crt-toggle');
     var overlay = document.getElementById('crt-overlay');
+    var sweep = document.querySelector('.crt-sweep');
     if (!toggle || !overlay) return;
 
     function setState(on) {
       if (on) {
         overlay.classList.add('on');
+        if (sweep) sweep.classList.add('on');
         toggle.classList.add('active');
         toggle.textContent = 'CRT';
       } else {
         overlay.classList.remove('on');
+        if (sweep) sweep.classList.remove('on');
         toggle.classList.remove('active');
         toggle.textContent = 'CRT';
       }

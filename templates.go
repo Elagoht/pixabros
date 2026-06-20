@@ -68,6 +68,7 @@ type GameVM struct {
 	Playable    bool
 	ItchEmbed   string
 	ItchURL     string // game-specific itch.io URL or studio fallback
+	LinkLabel   string // "Play on itch.io" or "Play on Fiuby" etc
 }
 
 type DevlogPostVM struct {
@@ -401,6 +402,10 @@ func toGameVM(games []Game, am assetResolver, itchFallback string) []GameVM {
 		if itchURL == "" {
 			itchURL = itchFallback
 		}
+		label := "Play on itch.io"
+		if strings.Contains(itchURL, "fiuby.com") {
+			label = "Play on Fiuby"
+		}
 		result[i] = GameVM{
 			Slug:        g.Slug,
 			Title:       g.Title,
@@ -412,6 +417,7 @@ func toGameVM(games []Game, am assetResolver, itchFallback string) []GameVM {
 			Playable:    g.Playable,
 			ItchEmbed:   g.ItchEmbed,
 			ItchURL:     itchURL,
+			LinkLabel:   label,
 		}
 	}
 	return result

@@ -42,7 +42,7 @@ html(lang="en")
             h2.pixel-heading.shelf-title Play in Browser
             div.arcade-cartridges#cartridge-shelf
               each g in .PlayableGames
-                div.nes-cartridge(data-slug=.Slug, data-embed=.ItchEmbed, data-itch=.Links.Itchio, data-title=.Title, data-genre=.Genre, data-desc=.Description, data-image=.ImageURL, data-year=.Year)
+                div.nes-cartridge(data-slug=.Slug, data-embed=.ItchEmbed, data-itch=.Links.Itchio, data-title=.Title, data-genre=.Genre, data-desc=.Description, data-image=.ImageURL, data-year=.Year, data-link-label=.LinkLabel)
                   div.cart-ridge
                   div.cart-grip
                     div.cart-grip-lines
@@ -81,7 +81,7 @@ html(lang="en")
           p.play-all-subtitle Download and play on itch.io
           div.games-grid
             each game in .Games
-              a.game-card(href=.ItchURL, target="_blank", rel="noopener", title=.Title)
+              a.game-card(href=.ItchURL, target="_blank", rel="noopener", title=.Title, data-link-label=.LinkLabel)
                 div.game-card-frame
                   img.game-thumb(src=.ImageURL, alt=.Title, loading="lazy", width="400", height="225")
                   div.game-card-overlay

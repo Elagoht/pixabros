@@ -18,7 +18,6 @@
     initContactForm();
     initConsole();
     initKonamiCode();
-    initCRTToggle();
   });
 
   /* ---- Mobile Navigation ---- */
@@ -104,7 +103,7 @@
             var a = document.createElement('a');
             a.href = itch;
             a.className = 'arcade-btn-small';
-            a.textContent = 'Play on itch.io';
+            a.textContent = this.getAttribute('data-link-label') || 'Play on itch.io';
             a.target = '_blank';
             a.rel = 'noopener';
             links.appendChild(a);
@@ -275,7 +274,8 @@
           var itchBtn = document.createElement('a');
           itchBtn.href = itch;
           itchBtn.className = 'arcade-btn-small';
-          itchBtn.textContent = 'itch.io';
+          var label = cart.getAttribute('data-link-label') || '';
+            itchBtn.textContent = label.replace('Play on ', '');
           itchBtn.target = '_blank';
           itchBtn.rel = 'noopener';
           linksEl.appendChild(itchBtn);
@@ -356,34 +356,4 @@
     }
   }
 
-  /* ---- CRT Toggle ---- */
-  function initCRTToggle() {
-    var toggle = document.getElementById('crt-toggle');
-    var overlay = document.getElementById('crt-overlay');
-    var sweep = document.querySelector('.crt-sweep');
-    if (!toggle || !overlay) return;
-
-    function setState(on) {
-      if (on) {
-        overlay.classList.add('on');
-        if (sweep) sweep.classList.add('on');
-        toggle.classList.add('active');
-        toggle.textContent = 'CRT';
-      } else {
-        overlay.classList.remove('on');
-        if (sweep) sweep.classList.remove('on');
-        toggle.classList.remove('active');
-        toggle.textContent = 'CRT';
-      }
-    }
-
-    var saved = localStorage.getItem('pixabros-crt') === 'on';
-    setState(saved);
-
-    toggle.addEventListener('click', function () {
-      var next = !overlay.classList.contains('on');
-      localStorage.setItem('pixabros-crt', next ? 'on' : 'off');
-      setState(next);
-    });
-  }
 })();

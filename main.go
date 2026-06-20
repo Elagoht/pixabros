@@ -4,6 +4,7 @@ import (
 	"crypto/sha256"
 	"encoding/json"
 	"fmt"
+	"io/fs"
 	"log"
 	"net/http"
 	"os"
@@ -232,6 +233,29 @@ func handleContactPost(w http.ResponseWriter, r *http.Request) {
 	writeJSON(w, http.StatusOK, map[string]any{"ok": true})
 }
 
+func contentType(file string) string {
+	switch filepath.Ext(file) {
+	case ".html":
+		return "text/html; charset=utf-8"
+	case ".js":
+		return "application/javascript"
+	case ".css":
+		return "text/css; charset=utf-8"
+	case ".wasm":
+		return "application/wasm"
+	case ".png":
+		return "image/png"
+	case ".jpg", ".jpeg", ".JPG", ".JPEG":
+		return "image/jpeg"
+	case ".webp":
+		return "image/webp"
+	case ".pck":
+		return "application/octet-stream"
+	default:
+		return "application/octet-stream"
+	}
+}
+
 func writeJSON(w http.ResponseWriter, status int, v any) {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(status)
@@ -291,37 +315,29 @@ func setupRouter(rl *rateLimiter) http.Handler {
 
 	// Hashed immutable assets + browser game embeds
 	mux.HandleFunc("/dist/", func(w http.ResponseWriter, r *http.Request) {
-		p := filepath.Clean(filepath.Join("dist", strings.TrimPrefix(r.URL.Path, "/dist/")))
-		if strings.Contains(r.URL.Path, "..") || !strings.HasPrefix(p, "dist"+string(filepath.Separator)) {
+		rel := strings.TrimPrefix(r.URL.Path, "/dist/")
+		if strings.Contains(rel, "..") {
 			http.NotFound(w, r)
 			return
 		}
 		w.Header().Set("Cache-Control", "public, max-age=31536000, immutable")
+
+		// Try embedded FS first
+		if data, err := fs.ReadFile(distFS, "dist/"+rel); err == nil {
+			ct := contentType(rel)
+			w.Header().Set("Content-Type", ct)
+			w.Write(data)
+			return
+		}
+
+		// Fallback: disk
+		p := filepath.Join("dist", rel)
 		data, err := os.ReadFile(p)
 		if err != nil {
 			http.NotFound(w, r)
 			return
 		}
-		// Detect content type from extension
-		ct := "application/octet-stream"
-		switch filepath.Ext(p) {
-		case ".html":
-			ct = "text/html; charset=utf-8"
-		case ".js":
-			ct = "application/javascript"
-		case ".css":
-			ct = "text/css; charset=utf-8"
-		case ".wasm":
-			ct = "application/wasm"
-		case ".png":
-			ct = "image/png"
-		case ".jpg", ".jpeg", ".JPG", ".JPEG":
-			ct = "image/jpeg"
-		case ".webp":
-			ct = "image/webp"
-		case ".pck":
-			ct = "application/octet-stream"
-		}
+		ct := contentType(rel)
 		w.Header().Set("Content-Type", ct)
 		w.Write(data)
 	})
@@ -338,9 +354,9 @@ func main() {
 	log.SetFlags(log.Ltime | log.Lshortfile)
 	log.Println("Starting PixaBros (static mode)...")
 
-	// Load HTML pages into memory
+	// Load HTML pages into memory (embedded first, disk fallback)
 	pages = newHTMLStore()
-	if err := pages.load("dist/pages"); err != nil {
+	if err := pages.loadPages(); err != nil {
 		log.Fatalf("Failed to load HTML pages: %v", err)
 	}
 
@@ -352,8 +368,8 @@ func main() {
 	signal.Notify(sigCh, syscall.SIGHUP)
 	go func() {
 		for range sigCh {
-			log.Println("SIGHUP: reloading HTML pages from disk...")
-			if err := pages.load("dist/pages"); err != nil {
+			log.Println("SIGHUP: reloading HTML pages...")
+			if err := pages.loadPages(); err != nil {
 				log.Printf("Error reloading pages: %v", err)
 			}
 			log.Printf("Reload complete. %d pages in memory.", pages.count())

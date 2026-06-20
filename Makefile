@@ -20,3 +20,8 @@ clean:
 # Build assets + HTML only (no binary)
 assets:
 	go run build.go content.go templates.go render.go
+
+# Self-contained Linux binary with all assets embedded
+bundle-linux: assets
+	CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -trimpath -ldflags="-s -w" -o pixabros-linux .
+	@echo "Built: pixabros-linux (static, embedded assets)"

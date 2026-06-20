@@ -39,7 +39,7 @@ html(lang="en")
             p.section-subtitle #{len .Games} games, two brothers, infinite passion
           div.games-grid
             each game in .Games
-              div.game-card(data-title=.Title, data-genre=.Genre, data-desc=.Description, data-image=.ImageURL, data-year=.Year, data-itch=.ItchURL)
+              div.game-card(data-title=.Title, data-genre=.Genre, data-desc=.Description, data-image=.ImageURL, data-year=.Year, data-itch=.ItchURL, data-link-label=.LinkLabel)
                 div.game-card-frame
                   img.game-thumb(src=.ImageURL, alt=.Title, loading="lazy", width="400", height="225")
                   div.game-card-overlay

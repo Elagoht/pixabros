@@ -34,10 +34,11 @@ type PageData struct {
 	SocialMailto string
 
 	// Page-specific data
-	Bros         []BrotherVM
-	Games        []GameVM
-	Game         *GameVM
-	DevlogPosts  []DevlogPostVM
+	Bros          []BrotherVM
+	Games         []GameVM
+	PlayableGames []GameVM
+	Game          *GameVM
+	DevlogPosts   []DevlogPostVM
 	Post         *DevlogPostVM
 	WorkingOn    []WorkingOnVM
 	PressKit     *PressKitVM
@@ -68,6 +69,13 @@ type GameVM struct {
 	ImageURL    string
 	Year        int
 	Links       GameLinks
+	Playable       bool
+	ItchEmbed      string
+	CartClass      string        // "playable" or "locked"
+	BadgeHTML      template.HTML
+	HasEmbed       bool
+	HasItchioLink  bool
+	CartridgeClass string // "cart-loaded" or "cart-empty"
 }
 
 type DevlogPostVM struct {
@@ -384,14 +392,29 @@ func toBrotherVM(bros []Brother, _ assetResolver) []BrotherVM {
 func toGameVM(games []Game, am assetResolver) []GameVM {
 	result := make([]GameVM, len(games))
 	for i, g := range games {
+		cartridgeClass := "cart-empty"
+		cartClass := "locked"
+		badge := template.HTML("🔒")
+		if g.Playable {
+			cartClass = "playable"
+			badge = "▶ PLAY"
+			cartridgeClass = "cart-loaded"
+		}
 		result[i] = GameVM{
-			Slug:        g.Slug,
-			Title:       g.Title,
-			Genre:       g.Genre,
-			Description: g.Description,
-			ImageURL:    am.path("public/gallery/" + g.Screenshot),
-			Year:        g.Year,
-			Links:       g.Links,
+			Slug:           g.Slug,
+			Title:          g.Title,
+			Genre:          g.Genre,
+			Description:    g.Description,
+			ImageURL:       am.path("public/gallery/" + g.Screenshot),
+			Year:           g.Year,
+			Links:          g.Links,
+			Playable:       g.Playable,
+			ItchEmbed:      g.ItchEmbed,
+			CartClass:      cartClass,
+			BadgeHTML:      badge,
+			HasEmbed:       g.ItchEmbed != "",
+			HasItchioLink:  g.Links.Itchio != "",
+			CartridgeClass: cartridgeClass,
 		}
 	}
 	return result

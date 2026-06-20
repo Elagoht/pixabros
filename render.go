@@ -10,6 +10,16 @@ import (
 	"path/filepath"
 )
 
+func filterPlayable(games []GameVM) []GameVM {
+	var out []GameVM
+	for _, g := range games {
+		if g.Playable {
+			out = append(out, g)
+		}
+	}
+	return out
+}
+
 // ---- Render all static HTML pages during build ----
 
 type assetMap map[string]string
@@ -98,6 +108,15 @@ func renderAllPages() error {
 	pd.Games = toGameVM(c.Games, am)
 	if err := write("index", pd); err != nil {
 		return fmt.Errorf("index: %w", err)
+	}
+
+	// ---- Play ----
+	pdPlay := makePD("Play — PixaBros", "Play PixaBros games right in your browser", "/play")
+	allGames := toGameVM(c.Games, am)
+	pdPlay.Games = allGames
+	pdPlay.PlayableGames = filterPlayable(allGames)
+	if err := write("play", pdPlay); err != nil {
+		return fmt.Errorf("play: %w", err)
 	}
 
 	// ---- Devlog index ----

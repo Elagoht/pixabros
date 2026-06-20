@@ -250,17 +250,6 @@ func serve404(w http.ResponseWriter, r *http.Request) {
 
 // ---- Static Assets ----
 
-func staticHandler(root string) http.Handler {
-	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		path := filepath.Join(root, strings.TrimPrefix(r.URL.Path, "/"))
-		if strings.Contains(r.URL.Path, "..") {
-			http.NotFound(w, r)
-			return
-		}
-		w.Header().Set("Cache-Control", "public, max-age=31536000, immutable")
-		http.ServeFile(w, r, path)
-	})
-}
 
 // ---- Router ----
 
@@ -282,6 +271,7 @@ func setupRouter(rl *rateLimiter) http.Handler {
 	})
 	mux.HandleFunc("/devlog", handleDevlogPage)
 	mux.HandleFunc("/devlog/", handleDevlogPage)
+	mux.HandleFunc("/play", handlePage("/play", http.StatusOK))
 	mux.HandleFunc("/working-on", handlePage("/working-on", http.StatusOK))
 	mux.HandleFunc("/press-kit", handlePage("/press-kit", http.StatusOK))
 
@@ -300,8 +290,42 @@ func setupRouter(rl *rateLimiter) http.Handler {
 		handleContact(w, r)
 	})
 
-	// Hashed immutable assets
-	mux.Handle("/dist/", http.StripPrefix("/dist/", staticHandler("dist")))
+	// Hashed immutable assets + browser game embeds
+	mux.HandleFunc("/dist/", func(w http.ResponseWriter, r *http.Request) {
+		p := filepath.Clean(filepath.Join("dist", strings.TrimPrefix(r.URL.Path, "/dist/")))
+		if strings.Contains(r.URL.Path, "..") || !strings.HasPrefix(p, "dist"+string(filepath.Separator)) {
+			http.NotFound(w, r)
+			return
+		}
+		w.Header().Set("Cache-Control", "public, max-age=31536000, immutable")
+		data, err := os.ReadFile(p)
+		if err != nil {
+			http.NotFound(w, r)
+			return
+		}
+		// Detect content type from extension
+		ct := "application/octet-stream"
+		switch filepath.Ext(p) {
+		case ".html":
+			ct = "text/html; charset=utf-8"
+		case ".js":
+			ct = "application/javascript"
+		case ".css":
+			ct = "text/css; charset=utf-8"
+		case ".wasm":
+			ct = "application/wasm"
+		case ".png":
+			ct = "image/png"
+		case ".jpg", ".jpeg":
+			ct = "image/jpeg"
+		case ".webp":
+			ct = "image/webp"
+		case ".pck":
+			ct = "application/octet-stream"
+		}
+		w.Header().Set("Content-Type", ct)
+		w.Write(data)
+	})
 
 	// Public assets (unhashed fallback)
 	mux.Handle("/public/", http.StripPrefix("/public/", http.FileServer(http.Dir("public"))))

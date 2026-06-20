@@ -58,6 +58,8 @@ type Game struct {
 	Screenshot  string    `json:"screenshot"`
 	Links       GameLinks `json:"links"`
 	Year        int       `json:"year"`
+	Playable    bool      `json:"playable"`
+	ItchEmbed   string    `json:"itchEmbed"`
 }
 
 // ---- Press Kit ----

@@ -1,0 +1,71 @@
+doctype html
+html(lang="en")
+  head
+    include templates/_partials/_head.jade
+  body
+    include templates/_partials/_nav.jade
+    main
+      section.play-page
+        // TV Screen
+        div.nes-tv
+          div.nes-tv-outer
+            div.nes-tv-screen
+              div.nes-tv-static#tv-static(aria-hidden="true")
+              iframe#tv-iframe.nes-tv-iframe(src="", allowfullscreen="true", frameborder="0", loading="lazy")
+              div.nes-tv-placeholder#tv-placeholder
+                div.nes-tv-start
+                  span.nes-tv-start-icon ▶
+                  span.nes-tv-start-text INSERT CARTRIDGE
+            div.nes-tv-brand PIXABROS
+            div.nes-tv-controls
+              button.nes-tv-fullscreen#tv-fullscreen(title="Fullscreen") ⛶
+          div.nes-tv-legs
+            div.nes-tv-leg
+            div.nes-tv-leg
+
+        // NES Console
+        div.nes-console
+          div.nes-console-body
+            div.nes-console-top-shell
+              div.nes-console-lid
+            div.nes-console-front
+              div.nes-console-slot
+                span.nes-slot-label INSERT CARTRIDGE
+              div.nes-console-led-row
+                div.nes-power-led#nes-led
+                span.nes-power-label POWER
+                div.nes-reset-btn
+                  span.nes-reset-label RESET
+
+        // Cartridge shelf — only playable games
+        h2.pixel-heading.shelf-title Game Library
+        div.nes-cartridges#cartridge-shelf
+          each g in .PlayableGames
+            div.nes-cartridge(data-slug=.Slug, data-embed=.ItchEmbed, data-itch=.Links.Itchio)
+              // cartridge top ridge
+              div.cart-ridge
+              // cartridge grip area
+              div.cart-grip
+                div.cart-grip-lines
+                  span
+                  span
+                  span
+              // cartridge label
+              div.cart-label
+                span.cart-title #{.Title}
+              // cartridge body
+              div.cart-shell
+                div.cart-shell-top
+                img.cart-thumb(src=.ImageURL, alt=.Title, loading="lazy", width="120", height="68")
+                div.cart-shell-bottom
+              // cartridge contacts
+              div.cart-contacts
+                span
+                span
+                span
+                span
+                span
+
+    include templates/_partials/_footer.jade
+    include templates/_partials/_overlays.jade
+    script(src=.DistJS)

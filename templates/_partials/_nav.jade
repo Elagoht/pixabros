@@ -1,0 +1,16 @@
+nav#navbar.pixel-nav
+  div.nav-inner
+    a.logo-link(href="/")
+      img.nav-logo(src=.LogoPath, alt=.Studio, width="48", height="41")
+      span.nav-brand #{.Studio}
+    button#nav-toggle.mobile-toggle(aria-label="Toggle menu")
+      span
+      span
+      span
+    ul.nav-links
+      li: a(href="/") Home
+      li: a(href="/play") Play
+      li: a(href="/devlog") Devlog
+      li: a(href="/working-on") WIP
+      li: a(href="/press-kit") Press Kit
+      li: a(href="/contact") Contact

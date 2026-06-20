@@ -21,6 +21,7 @@
     initGameModal();
     initTypewriter();
     initContactForm();
+    initNESConsole();
     initKonamiCode();
     initCRTToggle();
     initAchievementTracking();
@@ -310,6 +311,64 @@
         }
       });
     });
+  }
+
+  // ---- NES Console + Cartridge System ----
+  function initNESConsole() {
+    var shelf = document.getElementById('cartridge-shelf');
+    if (!shelf) return;
+
+    var iframe = document.getElementById('tv-iframe');
+    var placeholder = document.getElementById('tv-placeholder');
+    var fullscreenBtn = document.getElementById('tv-fullscreen');
+    var led = document.getElementById('nes-led');
+    var cartridges = shelf.querySelectorAll('.nes-cartridge');
+    var selected = null;
+
+    // Preload iframe src to a blank page so fullscreen works
+    iframe.src = 'about:blank';
+
+    function selectCartridge(cart) {
+      if (selected === cart) return;
+      var embedUrl = cart.getAttribute('data-embed');
+
+      // Deselect previous
+      if (selected) {
+        selected.classList.remove('cart-selected');
+      }
+
+      // Select new
+      selected = cart;
+      cart.classList.add('cart-selected');
+
+      // Load game into TV
+      if (placeholder) placeholder.classList.add('hidden');
+      iframe.src = embedUrl;
+      iframe.classList.add('active');
+
+      // Turn on power LED
+      if (led) led.classList.add('on');
+    }
+
+    // Click to insert cartridge
+    cartridges.forEach(function (cart) {
+      cart.addEventListener('click', function () {
+        selectCartridge(cart);
+      });
+    });
+
+    // Fullscreen — targets the TV screen element, requires user click
+    if (fullscreenBtn) {
+      fullscreenBtn.addEventListener('click', function () {
+        var tvScreen = document.querySelector('.nes-tv-screen');
+        if (!tvScreen) return;
+        if (document.fullscreenElement) {
+          document.exitFullscreen();
+        } else {
+          (tvScreen.requestFullscreen || tvScreen.webkitRequestFullscreen).call(tvScreen);
+        }
+      });
+    }
   }
 
   // ---- Konami Code ----

@@ -3,10 +3,12 @@
 package main
 
 import (
+	"archive/zip"
 	"crypto/sha256"
 	"encoding/hex"
 	"encoding/json"
 	"fmt"
+	"io"
 	"log"
 	"os"
 	"path/filepath"
@@ -40,13 +42,80 @@ func main() {
 	}
 	log.Printf("  Hashed %d assets → dist/manifest.json", len(am))
 
-	// Phase 2: Render static HTML
+	// Phase 2: Extract browser games
+	log.Println("Phase 2: Extracting browser games...")
+	if err := extractBrowserGames(); err != nil {
+		log.Fatalf("Extract browser games: %v", err)
+	}
+
+	// Phase 3: Render static HTML
 	log.Println("Phase 2: Rendering HTML pages...")
 	if err := renderAllPages(); err != nil {
 		log.Fatalf("Render pages: %v", err)
 	}
 
 	log.Println("=== Build complete ===")
+}
+
+func extractBrowserGames() error {
+	srcDir := "public/browser-games"
+	entries, err := os.ReadDir(srcDir)
+	if err != nil {
+		if os.IsNotExist(err) {
+			log.Println("  No browser games found.")
+			return nil
+		}
+		return err
+	}
+
+	for _, entry := range entries {
+		if entry.IsDir() || !strings.HasSuffix(entry.Name(), ".zip") {
+			continue
+		}
+		slug := strings.TrimSuffix(entry.Name(), ".zip")
+		dest := filepath.Join("dist", "embeds", slug)
+		if err := os.MkdirAll(dest, 0755); err != nil {
+			return fmt.Errorf("mkdir %s: %w", dest, err)
+		}
+
+		zipPath := filepath.Join(srcDir, entry.Name())
+		r, err := zip.OpenReader(zipPath)
+		if err != nil {
+			return fmt.Errorf("opening %s: %w", zipPath, err)
+		}
+		defer r.Close()
+
+		for _, f := range r.File {
+			// Skip __MACOSX junk and directories
+			if strings.HasPrefix(f.Name, "__MACOSX") || strings.HasSuffix(f.Name, "/") {
+				continue
+			}
+			// Flatten: strip any leading directories
+			name := filepath.Base(f.Name)
+			if name == "" || strings.HasPrefix(name, ".") {
+				continue
+			}
+
+			outPath := filepath.Join(dest, name)
+			rc, err := f.Open()
+			if err != nil {
+				return fmt.Errorf("reading %s from zip: %w", f.Name, err)
+			}
+			out, err := os.Create(outPath)
+			if err != nil {
+				rc.Close()
+				return fmt.Errorf("creating %s: %w", outPath, err)
+			}
+			_, err = io.Copy(out, rc)
+			rc.Close()
+			out.Close()
+			if err != nil {
+				return fmt.Errorf("writing %s: %w", outPath, err)
+			}
+		}
+		log.Printf("  extracted: %s → dist/embeds/%s/ (%d files)", entry.Name(), slug, len(r.File))
+	}
+	return nil
 }
 
 func hashDir(srcRoot, dstRoot string, am assetMap) error {

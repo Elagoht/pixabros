@@ -249,8 +249,6 @@
       var year = cart.getAttribute('data-year') || '';
       var itch = cart.getAttribute('data-itch') || '';
 
-      infoPanel.classList.add('active');
-
       var titleEl = infoPanel.querySelector('.game-info-title');
       var genreEl = infoPanel.querySelector('.game-info-genre');
       var yearEl = infoPanel.querySelector('.game-info-year');
@@ -297,14 +295,17 @@
       if (tvLed) tvLed.classList.remove('on');
       if (slotLabel) slotLabel.textContent = 'INSERT CARTRIDGE';
 
-      // Reset sidebar
-      if (infoPanel) infoPanel.classList.remove('active');
     }
 
     for (var i = 0; i < cartridges.length; i++) {
       cartridges[i].addEventListener('click', function () {
         selectCartridge(this);
       });
+    }
+
+    // Populate sidebar with first cartridge info on load
+    if (cartridges.length > 0) {
+      updateInfoPanel(cartridges[0]);
     }
 
     var resetBtn = document.querySelector('.arcade-reset-btn');

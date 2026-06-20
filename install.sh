@@ -39,14 +39,13 @@ fi
 
 # ── Install binary ──
 say "Installing to $INSTALL_DIR"
-mkdir -p "$INSTALL_DIR"
+mkdir -p "$INSTALL_DIR/dist"
 cp "$BIN_NAME" "$INSTALL_DIR/$BIN_NAME"
 chmod 755 "$INSTALL_DIR/$BIN_NAME"
 
 # Copy game embeds (not embedded in binary — read from disk)
 if [ -d "dist/embeds" ]; then
   say "Copying game embeds..."
-  rm -rf "$INSTALL_DIR/dist/embeds"
   cp -r dist/embeds "$INSTALL_DIR/dist/embeds"
 fi
 if [ -d "dist/browser-games" ]; then

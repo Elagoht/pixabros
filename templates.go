@@ -39,8 +39,7 @@ type PageData struct {
 	PlayableGames []GameVM
 	DevlogPosts   []DevlogPostVM
 	Post          *DevlogPostVM
-	WorkingOn     []WorkingOnVM
-	PressKit      *PressKitVM
+	Awards        []AwardVM
 
 	// Asset paths
 	DistCSS  string
@@ -82,30 +81,6 @@ type DevlogPostVM struct {
 	URL           string
 }
 
-type WorkingOnVM struct {
-	Title         string
-	Status        string
-	Progress      int
-	Description   string
-	Image         string
-	Tags          []string
-	ProgressStyle string
-}
-
-type PressKitVM struct {
-	Studio             string
-	Founded            int
-	Location           string
-	Website            string
-	PressContact       string
-	PressContactMailto string
-	Socials            Socials
-	Description        string
-	History            string
-	Team               []PressKitTeamMember
-	LogoPath           string
-}
-
 type NavLink struct {
 	Label string
 	Path  string
@@ -114,11 +89,44 @@ type NavLink struct {
 func navLinks() []NavLink {
 	return []NavLink{
 		{Label: "Home", Path: "/"},
+		{Label: "Play", Path: "/play"},
 		{Label: "Devlog", Path: "/devlog"},
-		{Label: "What We're Working On", Path: "/working-on"},
-		{Label: "Press Kit", Path: "/press-kit"},
+		{Label: "Awards", Path: "/awards"},
 		{Label: "Contact", Path: "/contact"},
 	}
+}
+
+// ---- Award VM ----
+
+type AwardVM struct {
+	Title       string
+	Event       string
+	Date        string
+	Game        string
+	GameSlug    string
+	Description string
+	ImageURL    string
+}
+
+func toAwardVM(awards []Award, am assetResolver) []AwardVM {
+	result := make([]AwardVM, len(awards))
+	for i, a := range awards {
+		imageURL := a.Image
+		// If it starts with /public/, resolve through manifest
+		if len(imageURL) > 8 && imageURL[:8] == "/public/" {
+			imageURL = am.path(imageURL[1:]) // strip leading /
+		}
+		result[i] = AwardVM{
+			Title:       a.Title,
+			Event:       a.Event,
+			Date:        a.Date,
+			Game:        a.Game,
+			GameSlug:    a.GameSlug,
+			Description: a.Description,
+			ImageURL:    imageURL,
+		}
+	}
+	return result
 }
 
 // ---- Template Compilation ----
@@ -363,7 +371,7 @@ type assetResolver interface {
 	path(key string) string
 }
 
-func toBrotherVM(bros []Brother, _ assetResolver) []BrotherVM {
+func toBrotherVM(bros []Brother, am assetResolver) []BrotherVM {
 	result := make([]BrotherVM, len(bros))
 	for i, b := range bros {
 		parts := strings.Fields(b.Name)
@@ -371,11 +379,15 @@ func toBrotherVM(bros []Brother, _ assetResolver) []BrotherVM {
 		if len(parts) >= 2 {
 			init = strings.ToUpper(string(parts[0][0]) + string(parts[1][0]))
 		}
+		avatar := ""
+		if b.Avatar != "" {
+			avatar = am.path(b.Avatar)
+		}
 		result[i] = BrotherVM{
 			Name:     b.Name,
 			Roles:    b.Roles,
 			Bio:      b.Bio,
-			Avatar:   b.Avatar,
+			Avatar:   avatar,
 			Initials: init,
 		}
 	}
@@ -438,37 +450,4 @@ func toDevlogPostVMSingle(post *DevlogPost) *DevlogPostVM {
 	}
 }
 
-func toWorkingOnVM(items []WorkingOnItem) []WorkingOnVM {
-	result := make([]WorkingOnVM, len(items))
-	for i, w := range items {
-		result[i] = WorkingOnVM{
-			Title:         w.Title,
-			Status:        w.Status,
-			Progress:      w.Progress,
-			Description:   w.Description,
-			Image:         w.Image,
-			Tags:          w.Tags,
-			ProgressStyle: fmt.Sprintf("width: %d%%", w.Progress),
-		}
-	}
-	return result
-}
 
-func toPressKitVM(pk *PressKit, am assetResolver) *PressKitVM {
-	if pk == nil {
-		return nil
-	}
-	return &PressKitVM{
-		Studio:             pk.Studio,
-		Founded:            pk.Founded,
-		Location:           pk.Location,
-		Website:            pk.Website,
-		PressContact:       pk.PressContact,
-		PressContactMailto: "mailto:" + pk.PressContact,
-		Socials:            pk.Socials,
-		Description:        pk.Description,
-		History:            pk.History,
-		Team:               pk.Team,
-		LogoPath:           am.path("public/assets/pixabros.png"),
-	}
-}

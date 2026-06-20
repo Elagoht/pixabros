@@ -62,50 +62,25 @@ type Game struct {
 	ItchEmbed   string    `json:"itchEmbed"`
 }
 
-// ---- Press Kit ----
+// ---- Awards ----
 
-type PressKitTeamMember struct {
-	Name  string   `json:"name"`
-	Roles []string `json:"roles"`
-}
-
-type PressKitLogos struct {
-	Default string `json:"default"`
-}
-
-type PressKit struct {
-	Studio        string              `json:"studio"`
-	Founded       int                 `json:"founded"`
-	Location      string              `json:"location"`
-	Website       string              `json:"website"`
-	PressContact  string              `json:"pressContact"`
-	Socials       Socials             `json:"socials"`
-	Description   string              `json:"description"`
-	History       string              `json:"history"`
-	Team          []PressKitTeamMember `json:"team"`
-	Logos         PressKitLogos       `json:"logos"`
-	FeaturedGames []string            `json:"featuredGames"`
-}
-
-// ---- Working On ----
-
-type WorkingOnItem struct {
-	Title       string   `json:"title"`
-	Status      string   `json:"status"`
-	Progress    int      `json:"progress"`
-	Description string   `json:"description"`
-	Image       string   `json:"image"`
-	Tags        []string `json:"tags"`
+type Award struct {
+	Title       string `json:"title"`
+	Event       string `json:"event"`
+	Date        string `json:"date"`
+	Game        string `json:"game"`
+	GameSlug    string `json:"gameSlug"`
+	Description string `json:"description"`
+	Image       string `json:"image"`
 }
 
 // ---- Content Store ----
 
 type Content struct {
-	Site      SiteConfig
-	Bros      []Brother
-	Games     []Game
-	PressKit  PressKit
-	WorkingOn []WorkingOnItem
+	Site   SiteConfig
+	Bros   []Brother
+	Awards []Award
+	Games  []Game
 }
 
 var content Content
@@ -132,15 +107,13 @@ func LoadContent() error {
 	if err := loadJSON("content/games.json", &content.Games); err != nil {
 		return err
 	}
-	if err := loadJSON("content/press-kit.json", &content.PressKit); err != nil {
-		return err
-	}
-	if err := loadJSON("content/working-on.json", &content.WorkingOn); err != nil {
-		return err
+	if err := loadJSON("content/awards.json", &content.Awards); err != nil {
+		log.Printf("Note: awards.json not found or invalid: %v", err)
+		content.Awards = nil
 	}
 
-	log.Printf("Loaded: %d brothers, %d games, %d working-on items",
-		len(content.Bros), len(content.Games), len(content.WorkingOn))
+	log.Printf("Loaded: %d brothers, %d games, %d awards",
+		len(content.Bros), len(content.Games), len(content.Awards))
 	return nil
 }
 

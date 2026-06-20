@@ -146,25 +146,17 @@ func renderAllPages() error {
 		log.Printf("  page: devlog/%s.html (%d bytes)", post.Slug, len(html))
 	}
 
-	// ---- Working On ----
-	pdWip := makePD("What We're Working On — PixaBros", "Current projects in development at PixaBros", "/working-on")
-	pdWip.WorkingOn = toWorkingOnVM(c.WorkingOn)
-	if err := write("working-on", pdWip); err != nil {
-		return fmt.Errorf("working-on: %w", err)
+	// ---- Awards ----
+	pdAwards := makePD("Awards — PixaBros", "Game jam awards and recognition for PixaBros games", "/awards")
+	pdAwards.Awards = toAwardVM(c.Awards, am)
+	if err := write("awards", pdAwards); err != nil {
+		return fmt.Errorf("awards: %w", err)
 	}
 
 	// ---- Contact ----
 	pdContact := makePD("Contact — PixaBros", "Get in touch with PixaBros", "/contact")
 	if err := write("contact", pdContact); err != nil {
 		return fmt.Errorf("contact: %w", err)
-	}
-
-	// ---- Press Kit ----
-	pdPress := makePD("Press Kit — PixaBros", "Press resources for PixaBros", "/press-kit")
-	pdPress.PressKit = toPressKitVM(&c.PressKit, am)
-	pdPress.Games = toGameVM(c.Games, am, c.Site.Socials.Itchio)
-	if err := write("press-kit", pdPress); err != nil {
-		return fmt.Errorf("press-kit: %w", err)
 	}
 
 	// ---- 404 ----

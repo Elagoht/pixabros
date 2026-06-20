@@ -5,14 +5,13 @@
       "Code",
       "2D Art",
       "Music",
-      "Game Design",
       "SFX",
+      "Game Design",
       "Polishing",
-      "Video Editing",
-      "Publishing"
+      "Video Editing"
     ],
     "bio": "Furkan is the older brother. Works as a Software Specialist. He's enthusiastic about coding, loves Godot, and used Game Maker Studio for years. He's known for bringing electric guitar, bass guitar, and MIDI keyboard to game jams. He works in music, sound effects, general game design, coding, 2D drawing, and pixel art, as well as taking on tasks like creating teasers for game releases. He's not great at anything, but he has a basic understanding of everything.",
-    "avatar": ""
+    "avatar": "public/assets/furkan.jpg"
   },
   {
     "name": "Enes Baytekin",
@@ -21,9 +20,10 @@
       "2D Art",
       "Music",
       "Game Design",
+      "Polishing",
       "Animations"
     ],
-    "bio": "Enes is the younger brother who brings movement and energy to every project. With a keen eye for animation and a deep understanding of game feel, he makes characters come alive and worlds feel dynamic. His versatility across code, art, and music makes him an essential part of every PixaBros game.",
-    "avatar": ""
+    "bio": "Enes is the younger brother. He works as Server Admin. He jumps into every part of production just like his older brother — code, 2D art, music, game design, and animations. He's known for bringing magic tricks to game jams. He's also not great at anything, but he has a basic understanding of everything.",
+    "avatar": "public/assets/enes.jpg"
   }
 ]

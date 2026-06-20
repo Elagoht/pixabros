@@ -1,0 +1,30 @@
+doctype html
+html(lang="en")
+  head
+    include templates/_partials/_head.jade
+  body
+    include templates/_partials/_nav.jade
+    main
+      section.awards-page
+        header.section-header
+          p.section-eyebrow Recognition
+          h1 Awards
+          p.section-subtitle Game jam awards our little games have earned
+        if .Awards
+          div.awards-list
+            each award in .Awards
+              div.award-card
+                div.award-card-image
+                  img.award-img(src=.ImageURL, alt=.Title)
+                div.award-card-body
+                  h2.award-title #{.Title}
+                  span.award-event #{.Event}
+                  span.award-game #{.Game}
+                  p.award-desc #{.Description}
+        else
+          div.empty-state
+            p No awards yet. The grind continues!
+            p.empty-icon 🏆
+    include templates/_partials/_footer.jade
+    include templates/_partials/_overlays.jade
+    script(src=.DistJS)

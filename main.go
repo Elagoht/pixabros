@@ -272,8 +272,7 @@ func setupRouter(rl *rateLimiter) http.Handler {
 	mux.HandleFunc("/devlog", handleDevlogPage)
 	mux.HandleFunc("/devlog/", handleDevlogPage)
 	mux.HandleFunc("/play", handlePage("/play", http.StatusOK))
-	mux.HandleFunc("/working-on", handlePage("/working-on", http.StatusOK))
-	mux.HandleFunc("/press-kit", handlePage("/press-kit", http.StatusOK))
+	mux.HandleFunc("/awards", handlePage("/awards", http.StatusOK))
 
 	// Contact with rate limiting on POST
 	mux.HandleFunc("/contact", func(w http.ResponseWriter, r *http.Request) {
@@ -316,7 +315,7 @@ func setupRouter(rl *rateLimiter) http.Handler {
 			ct = "application/wasm"
 		case ".png":
 			ct = "image/png"
-		case ".jpg", ".jpeg":
+		case ".jpg", ".jpeg", ".JPG", ".JPEG":
 			ct = "image/jpeg"
 		case ".webp":
 			ct = "image/webp"

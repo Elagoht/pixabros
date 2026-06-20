@@ -1,0 +1,20 @@
+[
+  {
+    "title": "Best Game Graphics",
+    "event": "TEDU Jam 2026",
+    "date": "2026-04-26",
+    "game": "Hack N' Dough",
+    "gameSlug": "hack-n-dough",
+    "description": "Awarded Best Game Graphics for the unique claymation stop-motion visual style — handcrafted frame-by-frame animations that bring the beat 'em up world to life with a tactile, physical feel unlike anything else at the jam.",
+    "image": "/public/awards/tedu-jam-2026-en-guzel-oyun-grafigi.JPG"
+  },
+  {
+    "title": "Best Game Mechanic",
+    "event": "GGOG Ankara Game Jam 25",
+    "date": "2025-01-12",
+    "game": "TetraBros",
+    "gameSlug": "tetrabros",
+    "description": "Awarded Best Game Mechanic for the chaotic Tetris-block wizard duel system — where falling blocks become tactical hazards, fireballs stun but knockback kills, and every match plays out differently.",
+    "image": "/public/awards/ggog-ankara-game-jam-25-en-iyi-oyun-mekanigi.jpg"
+  }
+]

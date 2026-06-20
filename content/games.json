@@ -166,5 +166,33 @@
     "year": 2023,
     "playable": false,
     "itchEmbed": ""
+  },
+  {
+    "slug": "fok-n-roll",
+    "title": "Fok N' Roll",
+    "genre": "Rhythm Action",
+    "description": "A rhythm game where seals rock out on stage — give them the concert they deserve.",
+    "screenshot": "fok-n-roll.webp",
+    "links": {
+      "itchio": "",
+      "steam": ""
+    },
+    "year": 2024,
+    "playable": false,
+    "itchEmbed": ""
+  },
+  {
+    "slug": "rockunroll",
+    "title": "Rock Unroll",
+    "genre": "Physics Puzzle",
+    "description": "Rock rolling simulator for Rakun Jam. Guide a boulder through physics-based puzzle levels.",
+    "screenshot": "rockunroll.webp",
+    "links": {
+      "itchio": "",
+      "steam": ""
+    },
+    "year": 2024,
+    "playable": false,
+    "itchEmbed": ""
   }
 ]

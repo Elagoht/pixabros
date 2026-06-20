@@ -14,6 +14,7 @@
     initMobileNav();
     initActiveNav();
     initTypewriter();
+    initGameModal();
     initContactForm();
     initConsole();
     initKonamiCode();
@@ -68,6 +69,71 @@
     }
 
     setTimeout(type, 400);
+  }
+
+  /* ---- Game Detail Modal ---- */
+  function initGameModal() {
+    var modal = document.getElementById('game-modal');
+    if (!modal) return;
+
+    var closeBtn = modal.querySelector('.game-modal-close');
+    var backdrop = modal.querySelector('.game-modal-backdrop');
+
+    var cards = document.querySelectorAll('.game-card');
+    for (var i = 0; i < cards.length; i++) {
+      cards[i].addEventListener('click', function () {
+        var title = this.getAttribute('data-title') || '';
+        var genre = this.getAttribute('data-genre') || '';
+        var desc = this.getAttribute('data-desc') || '';
+        var image = this.getAttribute('data-image') || '';
+        var year = this.getAttribute('data-year') || '';
+        var itch = this.getAttribute('data-itch') || '';
+
+        setText(modal, '.game-modal-title', title);
+        setText(modal, '.game-modal-genre', genre);
+        setText(modal, '.game-modal-year', year);
+        setText(modal, '.game-modal-desc', desc);
+
+        var img = modal.querySelector('.game-modal-image');
+        if (img) { img.src = image; img.alt = title; }
+
+        var links = modal.querySelector('.game-modal-links');
+        if (links) {
+          links.innerHTML = '';
+          if (itch) {
+            var a = document.createElement('a');
+            a.href = itch;
+            a.className = 'arcade-btn-small';
+            a.textContent = 'Play on itch.io';
+            a.target = '_blank';
+            a.rel = 'noopener';
+            links.appendChild(a);
+          }
+        }
+
+        modal.classList.add('open');
+        modal.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+      });
+    }
+
+    function closeModal() {
+      modal.classList.remove('open');
+      modal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+
+    if (closeBtn) closeBtn.addEventListener('click', closeModal);
+    if (backdrop) backdrop.addEventListener('click', closeModal);
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && modal.classList.contains('open')) closeModal();
+    });
+  }
+
+  function setText(parent, selector, text) {
+    var el = parent.querySelector(selector);
+    if (el) el.textContent = text;
   }
 
   /* ---- Contact Form (AJAX) ---- */

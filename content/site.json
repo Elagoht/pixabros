@@ -2,14 +2,14 @@
   "studio": "PixaBros",
   "tagline": "Brothers make games",
   "description": "We are two brothers who make games together. From code to art, music to game design — we do it all.",
-  "founded": 2020,
+  "founded": 2025,
   "location": "Turkey",
   "socials": {
     "twitter": "https://twitter.com/pixabros",
-    "itchio": "https://pixabros.itch.io",
+    "itchio": "https://elagoht.itch.io",
     "discord": "",
-    "github": "https://github.com/pixabros",
-    "email": "hello@pixabros.com"
+    "github": "https://github.com/elagoht",
+    "email": "furkan@baytekin.dev"
   },
   "cta": {
     "text": "Check out our latest game!",

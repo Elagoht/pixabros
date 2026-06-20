@@ -1,135 +1,23 @@
 [
   {
-    "slug": "blup-blob",
-    "title": "Blup Blob",
-    "genre": "Puzzle Platformer",
-    "description": "A bouncy puzzle platformer adventure. Help Blup Blob navigate through challenging levels filled with colorful obstacles and clever puzzles.",
-    "screenshot": "blup-blob.png",
-    "links": {
-      "itchio": "",
-      "steam": ""
-    },
-    "year": 2024,
-    "playable": false,
-    "itchEmbed": ""
-  },
-  {
-    "slug": "digit-crush",
-    "title": "Digit Crush",
-    "genre": "Puzzle",
-    "description": "A number-crunching puzzle game that tests your math skills and strategic thinking. Match digits, clear the board, and aim for the high score.",
-    "screenshot": "digit-crush.png",
-    "links": {
-      "itchio": "",
-      "steam": ""
-    },
-    "year": 2023,
-    "playable": false,
-    "itchEmbed": ""
-  },
-  {
-    "slug": "dud-os",
-    "title": "Dud OS",
-    "genre": "Simulation",
-    "description": "A quirky operating system simulator. Explore a fictional OS filled with mini-games, easter eggs, and unexpected surprises at every click.",
-    "screenshot": "dud-os.png",
-    "links": {
-      "itchio": "",
-      "steam": ""
-    },
-    "year": 2023,
-    "playable": false,
-    "itchEmbed": ""
-  },
-  {
-    "slug": "fok-n-roll",
-    "title": "Fok N' Roll",
-    "genre": "Rhythm Action",
-    "description": "A high-energy rhythm game that blends rock music with fast-paced gameplay. Hit the right notes at the right time and rock the stage.",
-    "screenshot": "fok-n-roll.png",
-    "links": {
-      "itchio": "",
-      "steam": ""
-    },
-    "year": 2024,
-    "playable": false,
-    "itchEmbed": ""
-  },
-  {
-    "slug": "hack-n-dough",
-    "title": "Hack N' Dough",
-    "genre": "Action Strategy",
-    "description": "Hack systems and earn dough in this cyberpunk-themed action strategy game. Plan your hacks carefully and stay ahead of the security systems.",
-    "screenshot": "hack-n-dough.png",
-    "links": {
-      "itchio": "",
-      "steam": ""
-    },
-    "year": 2024,
-    "playable": false,
-    "itchEmbed": ""
-  },
-  {
     "slug": "har",
     "title": "HAR",
-    "genre": "Adventure",
-    "description": "An atmospheric adventure that takes you on a journey through mysterious landscapes. Uncover secrets, solve puzzles, and discover the story of HAR.",
+    "genre": "Co-op Adventure",
+    "description": "A 2.5D top-down local co-op action game set on the slopes of Ergenekon mountain. Two players work together to transport a sacred flame through treacherous terrain — gathering coal and wood, operating bellows, and keeping the fire alive against rain, wind, and the mountain's harsh conditions. Made for Turkic Game Jam 2026.",
     "screenshot": "har.png",
     "links": {
       "itchio": "https://elagoht.itch.io/har",
       "steam": ""
     },
-    "year": 2023,
+    "year": 2026,
     "playable": true,
     "itchEmbed": "/dist/embeds/har/index.html"
   },
   {
-    "slug": "injected",
-    "title": "Injected",
-    "genre": "Action",
-    "description": "A fast-paced action game where you fight against a system that's been compromised. Inject your way through security layers and take down the corruption.",
-    "screenshot": "injected.png",
-    "links": {
-      "itchio": "",
-      "steam": ""
-    },
-    "year": 2023,
-    "playable": false,
-    "itchEmbed": ""
-  },
-  {
-    "slug": "is-there-a-game",
-    "title": "Is There A Game?",
-    "genre": "Experimental",
-    "description": "A meta-experimental game that questions what a game really is. Is there a game here? Only one way to find out.",
-    "screenshot": "is-there-a-game.png",
-    "links": {
-      "itchio": "",
-      "steam": ""
-    },
-    "year": 2024,
-    "playable": false,
-    "itchEmbed": ""
-  },
-  {
-    "slug": "magical-vein",
-    "title": "Magical Vein",
-    "genre": "Fantasy RPG",
-    "description": "Delve into a magical world where mystical veins of power run through the land. Craft spells, battle creatures, and uncover ancient secrets.",
-    "screenshot": "magical-vein.png",
-    "links": {
-      "itchio": "https://elagoht.itch.io/magical-veins",
-      "steam": ""
-    },
-    "year": 2025,
-    "playable": true,
-    "itchEmbed": "/dist/embeds/magical-veins/index.html"
-  },
-  {
     "slug": "masquerade-survivors",
     "title": "Masquerade Survivors",
-    "genre": "Survivor-like",
-    "description": "Survive the masquerade! Battle through waves of masked enemies in this vampire-survivors-inspired action game with unique characters and abilities.",
+    "genre": "Bullet Heaven / Action",
+    "description": "A fast-paced Bullet Heaven with a unique Stance Dancing mechanic. Swap between three masks — Bull, Scout, and Mystic — each with distinct weapons and passives. Time your 2-second cooldown between switches as you level up and unlock global upgrades that apply across all forms simultaneously.",
     "screenshot": "masquerade-survivors.jpeg",
     "links": {
       "itchio": "https://elagoht.itch.io/masquerade-survivors",
@@ -140,27 +28,97 @@
     "itchEmbed": "/dist/embeds/masquerade-survivors/index.html"
   },
   {
-    "slug": "rockunroll",
-    "title": "Rock Unroll",
-    "genre": "Physics Puzzle",
-    "description": "Rock and roll! A physics-based puzzle game where you guide a boulder through intricate levels, using momentum and gravity to reach the goal.",
-    "screenshot": "rockunroll.webp",
+    "slug": "the-forking-path",
+    "title": "The Forking Path",
+    "genre": "Puzzle Roguelike",
+    "description": "A grid-based puzzle adventure where every choice forks the path. Navigate procedurally generated caves filled with traps, enemies, and shifting environments. Manipulate time, fork reality, and master element interactions — stones, vines, water, and lava all chain-react in surprising ways. Endless replayability.",
+    "screenshot": "the-forking-path.png",
     "links": {
-      "itchio": "",
+      "itchio": "https://elagoht.itch.io/the-forking-path",
       "steam": ""
     },
-    "year": 2024,
+    "year": 2025,
     "playable": false,
     "itchEmbed": ""
   },
   {
-    "slug": "sudo-mice",
-    "title": "Sudo Mice",
-    "genre": "Puzzle",
-    "description": "sudo make me a puzzle! A clever terminal-themed puzzle game where mice execute commands to navigate through increasingly complex mazes.",
-    "screenshot": "sudo-mice.png",
+    "slug": "tetrabros",
+    "title": "TetraBros",
+    "genre": "Arena Fighter",
+    "description": "A chaotic 2-player wizard duel in a storm of falling Tetris blocks. Fireballs stun but only knockback kills — push your opponent into hazards, dodge the sweeping laser, and survive the abyss. First to 5 kills claims victory! Made for Ankara Game Jam.",
+    "screenshot": "tetrabros.png",
     "links": {
-      "itchio": "",
+      "itchio": "https://elagoht.itch.io/tetrabros",
+      "steam": ""
+    },
+    "year": 2025,
+    "playable": true,
+    "itchEmbed": "/dist/embeds/tetrabros/index.html"
+  },
+  {
+    "slug": "magical-vein",
+    "title": "Magical Veins",
+    "genre": "Strategy / Tower Defense",
+    "description": "Harness the power of an ancient magical tower. Mine mystical runes to fuel castle effects — Heal, Damage, Energy — each shifting across four intensity levels. Low instability weakens you, maximum power devastates enemies. The forge drains randomly each turn; manage risk carefully.",
+    "screenshot": "magical-vein.png",
+    "links": {
+      "itchio": "https://elagoht.itch.io/magical-veins",
+      "steam": ""
+    },
+    "year": 2025,
+    "playable": true,
+    "itchEmbed": "/dist/embeds/magical-veins/index.html"
+  },
+  {
+    "slug": "blup-blob",
+    "title": "BlupBLOB",
+    "genre": "Party Brawler",
+    "description": "A chaotic 1–4 player arena brawler set in a bioluminescent microscopic world. Compete as single-celled organisms wielding organelle abilities — Spear, Bomb, Dash, and Engulf. Dynamic upgrades, bot AI, and multiple maps. Made for OstimTech Jam 2026.",
+    "screenshot": "blup-blob.png",
+    "links": {
+      "itchio": "https://elagoht.itch.io/blupblob",
+      "steam": ""
+    },
+    "year": 2026,
+    "playable": false,
+    "itchEmbed": ""
+  },
+  {
+    "slug": "hack-n-dough",
+    "title": "Hack N' Dough",
+    "genre": "Beat 'em Up",
+    "description": "A 2D side-scrolling beat 'em up with a unique claymation stop-motion visual style. Fight through waves of opponents with combo moves like Triple Punch, Leg Swipe, Uppercut Launch, and Meteor Dive. Supports local co-op on keyboard and gamepad. Made for Tedu Jam 2026.",
+    "screenshot": "hack-n-dough.png",
+    "links": {
+      "itchio": "https://elagoht.itch.io/hack-n-dough",
+      "steam": ""
+    },
+    "year": 2026,
+    "playable": false,
+    "itchEmbed": ""
+  },
+  {
+    "slug": "injected",
+    "title": "Injected",
+    "genre": "Twin-Stick Shooter",
+    "description": "A fast-paced top-down shooter set inside the human body. Control a white blood cell defending the lymph node against viruses, bacteria, and infected cells. Features a unique split-and-merge mechanic — divide into two independently controlled units for advanced dodging and flanking. Made for OstimTech Jam 2026.",
+    "screenshot": "injected.png",
+    "links": {
+      "itchio": "https://enesbaytekin.itch.io/injected",
+      "steam": ""
+    },
+    "year": 2026,
+    "playable": false,
+    "itchEmbed": ""
+  },
+  {
+    "slug": "dud-os",
+    "title": "Dud OS",
+    "genre": "Puzzle / Simulation",
+    "description": "Remote-connect to a malfunctioning power suit and debug its bizarre operating system. Fix code errors, drag objects onto buttons, and help the evrenaut survive hazards to defeat the alien boss. An isometric pixel-art puzzle game with a quirky sense of humor.",
+    "screenshot": "dud-os.png",
+    "links": {
+      "itchio": "https://elagoht.itch.io/dud-os",
       "steam": ""
     },
     "year": 2023,
@@ -168,30 +126,44 @@
     "itchEmbed": ""
   },
   {
-    "slug": "tetrabros",
-    "title": "Tetrabros",
-    "genre": "Puzzle",
-    "description": "The classic block-stacking puzzle reimagined by the bros. A fresh take on tetromino gameplay with unique twists and multiplayer action.",
-    "screenshot": "tetrabros.png",
+    "slug": "sudo-mice",
+    "title": "Sudo Mice",
+    "genre": "Strategy",
+    "description": "A local multiplayer strategy game where two mice duel by typing terminal commands. Summon units, attack the opponent's castle, and use sudo for root privileges — unlocking giant units, healing, and power-ups. Rock-paper-scissors unit superiority with sudo units getting 4x health and 2x damage. Made for ATOM Game Jam #2.",
+    "screenshot": "sudo-mice.png",
     "links": {
-      "itchio": "https://elagoht.itch.io/tetrabros",
-      "steam": ""
-    },
-    "year": 2024,
-    "playable": true,
-    "itchEmbed": "/dist/embeds/tetrabros/index.html"
-  },
-  {
-    "slug": "the-forking-path",
-    "title": "The Forking Path",
-    "genre": "Narrative Adventure",
-    "description": "Every choice forks the path. A narrative-driven adventure where your decisions shape the story in unexpected ways. How many endings will you find?",
-    "screenshot": "the-forking-path.png",
-    "links": {
-      "itchio": "https://elagoht.itch.io/the-forking-path",
+      "itchio": "https://elagoht.itch.io/sudo-mice",
       "steam": ""
     },
     "year": 2025,
+    "playable": false,
+    "itchEmbed": ""
+  },
+  {
+    "slug": "is-there-a-game",
+    "title": "Is There A Game?",
+    "genre": "Platformer / Puzzle",
+    "description": "A solo prototype platformer puzzle game made in 3 days for ATOM Game Jam. Navigate through levels using teleportation, reflective bullets, levers, pressure plates, and floating boxes. All code, art, SFX, and music created by one person — some sound effects made with just a mouth.",
+    "screenshot": "is-there-a-game.png",
+    "links": {
+      "itchio": "https://elagoht.itch.io/is-there-a-game",
+      "steam": ""
+    },
+    "year": 2024,
+    "playable": false,
+    "itchEmbed": ""
+  },
+  {
+    "slug": "digit-crush",
+    "title": "Digit Crush",
+    "genre": "Puzzle",
+    "description": "A relaxing number puzzle game where you combine digits that differ by at most 1. Form lines of three or more numbers to score points — longer lines earn more. Higher digits appear as you progress. Features a creative drawing mode on saved lines.",
+    "screenshot": "digit-crush.png",
+    "links": {
+      "itchio": "https://enesbaytekin.itch.io/digit-crush",
+      "steam": ""
+    },
+    "year": 2023,
     "playable": false,
     "itchEmbed": ""
   }

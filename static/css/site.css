@@ -614,6 +614,100 @@ h3 { font-size: 1.05rem; }
   font-weight: 600;
 }
 
+/* ---- Game Detail Modal ---- */
+.game-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 3000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s;
+}
+.game-modal.open {
+  opacity: 1;
+  pointer-events: all;
+}
+.game-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(6, 5, 9, 0.88);
+  backdrop-filter: blur(6px);
+}
+.game-modal-dialog {
+  position: relative;
+  background: var(--color-cabinet);
+  border: 2px solid var(--color-neon-cyan);
+  border-radius: var(--radius);
+  box-shadow: var(--glow-cyan), 0 0 4rem rgba(0, 240, 255, 0.1);
+  max-width: 42rem;
+  width: 92%;
+  max-height: 85vh;
+  overflow-y: auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  padding: 2rem;
+  align-items: start;
+}
+.game-modal-close {
+  position: absolute;
+  top: 0.75rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  font-size: 1.8rem;
+  color: var(--color-text-dim);
+  cursor: pointer;
+  z-index: 1;
+  line-height: 1;
+  transition: color var(--ease-out);
+}
+.game-modal-close:hover { color: var(--color-neon-pink); }
+.game-modal-image {
+  width: 100%;
+  border: 2px solid var(--color-bezel);
+  border-radius: 4px;
+}
+.game-modal-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+.game-modal-title {
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  color: var(--color-neon-cyan);
+  text-shadow: var(--glow-cyan);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.game-modal-genre {
+  font-family: var(--font-display);
+  font-size: 0.52rem;
+  color: var(--color-token);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.game-modal-year {
+  font-family: var(--font-ui);
+  font-size: 0.85rem;
+  color: var(--color-text-dim);
+  font-weight: 600;
+}
+.game-modal-desc {
+  font-size: 0.95rem;
+  color: var(--color-text-dim);
+  line-height: 1.65;
+}
+.game-modal-links {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
 /* ---- CTA Section ---- */
 .cta-banner {
   background: var(--color-cabinet);
@@ -1626,24 +1720,6 @@ h3 { font-size: 1.05rem; }
   margin-bottom: 0.5rem;
 }
 
-.crt-toggle {
-  font-family: var(--font-display);
-  font-size: 0.35rem;
-  background: transparent;
-  color: var(--color-text-dim);
-  border: 1px solid var(--color-bezel);
-  padding: 0.3rem 0.6rem;
-  cursor: pointer;
-  text-transform: uppercase;
-  border-radius: 3px;
-  transition: color var(--ease-out), border-color var(--ease-out), background var(--ease-out);
-}
-.crt-toggle:hover {
-  color: var(--color-neon-cyan);
-  border-color: var(--color-neon-cyan);
-  background: rgba(0, 229, 255, 0.04);
-}
-
 /* ---- CRT Scanline Overlay ---- */
 .crt-overlay {
   position: fixed;
@@ -1760,6 +1836,11 @@ h3 { font-size: 1.05rem; }
 
   .games-grid {
     grid-template-columns: repeat(auto-fill, minmax(13rem, 1fr));
+  }
+
+  .game-modal-dialog {
+    grid-template-columns: 1fr;
+    max-height: 90vh;
   }
 
   .footer-inner {

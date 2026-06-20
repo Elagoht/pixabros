@@ -1,27 +1,46 @@
 {
   "studio": "PixaBros",
-  "founded": 2020,
+  "founded": 2025,
   "location": "Turkey",
   "website": "https://pixabros.com",
   "pressContact": "hello@pixabros.com",
   "socials": {
     "twitter": "https://twitter.com/pixabros",
-    "itchio": "https://pixabros.itch.io"
+    "itchio": "https://elagoht.itch.io"
   },
   "description": "PixaBros is a two-brother game studio founded by Furkan and Enes Baytekin. We make games with pixel-perfect passion — handling everything from code and art to music and game design in-house. Our portfolio spans puzzle games, action titles, experimental projects, and narrative adventures.",
-  "history": "Founded in 2020, PixaBros started as two brothers making games in their spare time. Over the years, we have shipped 14+ games across multiple genres, each one a labor of love built from the ground up by just the two of us. From game jams to full releases, we continue to push our creative boundaries with every new project.",
+  "history": "Founded in 2025, PixaBros started as two brothers making games in their spare time. Over the years, we have shipped 14+ games across multiple genres, each one a labor of love built from the ground up by just the two of us. From game jams to full releases, we continue to push our creative boundaries with every new project.",
   "team": [
     {
       "name": "Furkan Baytekin",
-      "roles": ["Code", "2D Art", "Music", "Game Design", "SFX", "Polishing", "Video Editing"]
+      "roles": [
+        "Code",
+        "2D Art",
+        "Music",
+        "Game Design",
+        "SFX",
+        "Polishing",
+        "Video Editing"
+      ]
     },
     {
       "name": "Enes Baytekin",
-      "roles": ["Code", "2D Art", "Music", "Game Design", "Animations"]
+      "roles": [
+        "Code",
+        "2D Art",
+        "Music",
+        "Game Design",
+        "Animations"
+      ]
     }
   ],
   "logos": {
     "default": "/public/assets/pixabros.png"
   },
-  "featuredGames": ["masquerade-survivors", "magical-vein", "the-forking-path", "blup-blob"]
+  "featuredGames": [
+    "masquerade-survivors",
+    "magical-vein",
+    "the-forking-path",
+    "blup-blob"
+  ]
 }

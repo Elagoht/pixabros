@@ -39,13 +39,26 @@ html(lang="en")
             p.section-subtitle #{len .Games} games, two brothers, infinite passion
           div.games-grid
             each game in .Games
-              a.game-card(href="/play", title=.Title)
+              div.game-card(data-title=.Title, data-genre=.Genre, data-desc=.Description, data-image=.ImageURL, data-year=.Year, data-itch=.ItchURL)
                 div.game-card-frame
                   img.game-thumb(src=.ImageURL, alt=.Title, loading="lazy", width="400", height="225")
                   div.game-card-overlay
                     span.game-card-title #{.Title}
                     span.game-card-genre #{.Genre}
                     span.game-card-year #{.Year}
+
+      // Game Detail Modal
+      div.game-modal#game-modal(aria-hidden="true")
+        div.game-modal-backdrop
+        div.game-modal-dialog
+          button.game-modal-close(aria-label="Close") ×
+          img.game-modal-image(src="", alt="")
+          div.game-modal-info
+            h2.game-modal-title
+            span.game-modal-genre
+            span.game-modal-year
+            p.game-modal-desc
+            div.game-modal-links
 
       section.cta-banner
         h2 #{.Studio}

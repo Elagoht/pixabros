@@ -5,7 +5,7 @@ BIN_NAME="pixabros"
 SERVICE_NAME="pixabros"
 INSTALL_DIR="/opt/pixabros"
 USER="${PIXABROS_USER:-pixabros}"
-PORT="${PORT:-${PIXABROS_PORT:-8080}}"
+PORT=""
 
 # ── Colors ──
 RED='\033[0;31m'
@@ -17,8 +17,27 @@ say()  { echo -e "${GRN}→${NC} $*"; }
 warn() { echo -e "${YEL}⚠${NC}  $*"; }
 die()  { echo -e "${RED}✗${NC}  $*" >&2; exit 1; }
 
+usage() {
+  echo "Usage: sudo ./install.sh [--port PORT]"
+  echo ""
+  echo "  --port PORT   Port to listen on (env: PORT or PIXABROS_PORT, default: 8080)"
+  exit 1
+}
+
+# ── Parse args ──
+while [ $# -gt 0 ]; do
+  case "$1" in
+    --port) PORT="$2"; shift 2 ;;
+    -h|--help) usage ;;
+    *) die "Unknown option: $1. Use --port PORT" ;;
+  esac
+done
+
+# Fallback: --port arg → PORT env → PIXABROS_PORT env → default 8080
+PORT="${PORT:-${PIXABROS_PORT:-8080}}"
+
 # ── Pre-flight ──
-[ "$(id -u)" -eq 0 ] || die "Run as root: sudo ./install.sh"
+[ "$(id -u)" -eq 0 ] || die "Run as root: sudo ./install.sh --port PORT"
 
 # Detect binary
 if [ -f "pixabros-linux" ]; then
@@ -50,6 +69,12 @@ if [ -d "dist/embeds" ]; then
 fi
 if [ -d "dist/browser-games" ]; then
   cp -r dist/browser-games "$INSTALL_DIR/dist/browser-games"
+fi
+
+# Copy favicons & manifest (served at well-known URLs like /favicon.ico)
+if [ -d "public" ]; then
+  say "Copying public assets..."
+  cp -r public "$INSTALL_DIR/public"
 fi
 
 chown -R "$USER:$USER" "$INSTALL_DIR"

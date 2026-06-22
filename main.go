@@ -243,6 +243,10 @@ func contentType(file string) string {
 		return "text/css; charset=utf-8"
 	case ".wasm":
 		return "application/wasm"
+	case ".json":
+		return "application/json"
+	case ".ico":
+		return "image/x-icon"
 	case ".png":
 		return "image/png"
 	case ".jpg", ".jpeg", ".JPG", ".JPEG":
@@ -260,6 +264,19 @@ func writeJSON(w http.ResponseWriter, status int, v any) {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(status)
 	json.NewEncoder(w).Encode(v)
+}
+
+// serveWellKnown returns a handler that serves a public file from embedded FS first, disk as fallback.
+func serveWellKnown(diskPath string) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		if data, err := fs.ReadFile(distFS, diskPath); err == nil {
+			w.Header().Set("Content-Type", contentType(diskPath))
+			w.Header().Set("Cache-Control", "public, max-age=86400")
+			w.Write(data)
+			return
+		}
+		http.ServeFile(w, r, diskPath)
+	}
 }
 
 func serve404(w http.ResponseWriter, r *http.Request) {
@@ -354,6 +371,13 @@ func setupRouter(rl *rateLimiter) http.Handler {
 		w.Header().Set("Content-Type", ct)
 		w.Write(data)
 	})
+
+	// Well-known public files (favicons, manifest — must be at root paths for browser standards)
+	mux.HandleFunc("/favicon.ico", serveWellKnown("public/favicon.ico"))
+	mux.HandleFunc("/favicon-16x16.png", serveWellKnown("public/favicon-16x16.png"))
+	mux.HandleFunc("/favicon-32x32.png", serveWellKnown("public/favicon-32x32.png"))
+	mux.HandleFunc("/apple-touch-icon.png", serveWellKnown("public/apple-touch-icon.png"))
+	mux.HandleFunc("/manifest.json", serveWellKnown("public/manifest.json"))
 
 	// Public assets (unhashed fallback)
 	mux.Handle("/public/", http.StripPrefix("/public/", http.FileServer(http.Dir("public"))))

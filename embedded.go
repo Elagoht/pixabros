@@ -20,6 +20,11 @@ import (
 //go:embed dist/awards/*
 //go:embed dist/pages/*
 //go:embed dist/manifest.json
+//go:embed public/favicon.ico
+//go:embed public/favicon-16x16.png
+//go:embed public/favicon-32x32.png
+//go:embed public/apple-touch-icon.png
+//go:embed public/manifest.json
 var distFS embed.FS
 
 // loadPages loads HTML pages, preferring embedded dist/ over disk.

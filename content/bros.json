@@ -7,23 +7,26 @@
       "Music",
       "SFX",
       "Game Design",
+      "Animation",
       "Polishing",
       "Video Editing"
     ],
-    "bio": "Furkan is the older brother. Works as a Software Specialist. He's enthusiastic about coding, loves Godot, and used Game Maker Studio for years. He's known for bringing electric guitar, bass guitar, and MIDI keyboard to game jams. He works in music, sound effects, general game design, coding, 2D drawing, and pixel art, as well as taking on tasks like creating teasers for game releases. He's not great at anything, but he has a basic understanding of everything.",
+    "bio": "Furkan is the older brother. Works as a Software Specialist. He's enthusiastic about coding, loves Godot, and used Game Maker Studio for years. He's known for bringing electric guitar, bass guitar, and MIDI keyboard to game jams. He works in music, sound effects, general game design, coding, 2D drawing, and pixel art, as well as taking on tasks like creating teasers for game releases. He's not a master of any single craft, but he's a true jack-of-all-trades who knows exactly how to bridge every gap.",
     "avatar": "public/assets/furkan.jpg"
   },
   {
     "name": "Enes Baytekin",
     "roles": [
       "Code",
+      "Engine Development",
       "2D Art",
       "Music",
+      "SFX",
+      "Animation",
       "Game Design",
-      "Polishing",
-      "Animations"
+      "Polishing"
     ],
-    "bio": "Enes is the younger brother. He works as Server Admin. He jumps into every part of production just like his older brother — code, 2D art, music, game design, and animations. He's known for bringing magic tricks to game jams. He's also not great at anything, but he has a basic understanding of everything.",
+    "bio": "Enes is the younger brother. Works as a Systems Engineer. He's deeply passionate about game development, to the point of building his own custom game engine from scratch. He’s known for wandering around game jams like a wizard, performing literal magic tricks to spark up the venue. He works across all domains, from coding and pixel art to music, animation, and game design. He's also not a master of any single craft, but he's a true jack-of-all-trades who knows exactly how to bridge every gap.",
     "avatar": "public/assets/enes.jpg"
   }
 ]
